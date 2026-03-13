@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://googleapis.com/schemas/pagespeed/result.json",
+  "title": "PageSpeed Insights Result",
+  "description": "Schema for the response from the PageSpeed Insights API, containing Lighthouse audit scores, Core Web Vitals metrics, and optimization recommendations.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL that was analyzed"
+    },
+    "loadingExperience": {
+      "$ref": "#/$defs/LoadingExperience"
+    },
+    "originLoadingExperience": {
+      "$ref": "#/$defs/LoadingExperience"
+    },
+    "lighthouseResult": {
+      "$ref": "#/$defs/LighthouseResult"
+    },
+    "analysisUTCTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp of when the analysis was run"
+    }
+  },
+  "$defs": {
+    "LoadingExperience": {
+      "type": "object",
+      "description": "Chrome User Experience Report field data for the page or origin",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "LARGEST_CONTENTFUL_PAINT_MS": {
+              "$ref": "#/$defs/Metric"
+            },
+            "FIRST_INPUT_DELAY_MS": {
+              "$ref": "#/$defs/Metric"
+            },
+            "CUMULATIVE_LAYOUT_SHIFT_SCORE": {
+              "$ref": "#/$defs/Metric"
+            },
+            "INTERACTION_TO_NEXT_PAINT": {
+              "$ref": "#/$defs/Metric"
+            },
+            "FIRST_CONTENTFUL_PAINT_MS": {
+              "$ref": "#/$defs/Metric"
+            }
+          }
+        },
+        "overall_category": {
+          "type": "string",
+          "enum": ["FAST", "AVERAGE", "SLOW", "NONE"]
+        }
+      }
+    },
+    "Metric": {
+      "type": "object",
+      "description": "A Core Web Vitals metric with distribution data",
+      "properties": {
+        "percentile": {
+          "type": "integer",
+          "description": "The metric value at the 75th percentile"
+        },
+        "distributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "min": { "type": "integer" },
+              "max": { "type": "integer" },
+              "proportion": { "type": "number" }
+            }
+          }
+        },
+        "category": {
+          "type": "string",
+          "enum": ["FAST", "AVERAGE", "SLOW"]
+        }
+      }
+    },
+    "LighthouseResult": {
+      "type": "object",
+      "description": "Lighthouse audit results",
+      "properties": {
+        "requestedUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "finalUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "lighthouseVersion": {
+          "type": "string"
+        },
+        "fetchTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "categories": {
+          "type": "object",
+          "properties": {
+            "performance": { "$ref": "#/$defs/Category" },
+            "accessibility": { "$ref": "#/$defs/Category" },
+            "best-practices": { "$ref": "#/$defs/Category" },
+            "seo": { "$ref": "#/$defs/Category" }
+          }
+        },
+        "audits": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Audit"
+          }
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Category score from 0 to 1"
+        }
+      }
+    },
+    "Audit": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "score": { "type": "number" },
+        "displayValue": { "type": "string" },
+        "numericValue": { "type": "number" },
+        "numericUnit": { "type": "string" }
+      }
+    }
+  }
+}

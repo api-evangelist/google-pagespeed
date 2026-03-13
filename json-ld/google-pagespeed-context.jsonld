@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "psi": "https://googleapis.com/pagespeedonline/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "PageSpeedResult": {
+      "@id": "psi:PageSpeedResult",
+      "@context": {
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "analysisTimestamp": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "performanceScore": "psi:performanceScore",
+        "accessibilityScore": "psi:accessibilityScore",
+        "seoScore": "psi:seoScore",
+        "bestPracticesScore": "psi:bestPracticesScore"
+      }
+    },
+
+    "CoreWebVitals": {
+      "@id": "psi:CoreWebVitals",
+      "@context": {
+        "largestContentfulPaint": "psi:largestContentfulPaint",
+        "firstInputDelay": "psi:firstInputDelay",
+        "cumulativeLayoutShift": "psi:cumulativeLayoutShift",
+        "interactionToNextPaint": "psi:interactionToNextPaint",
+        "firstContentfulPaint": "psi:firstContentfulPaint",
+        "category": "psi:overallCategory"
+      }
+    },
+
+    "LighthouseAudit": {
+      "@id": "psi:LighthouseAudit",
+      "@context": {
+        "auditId": "schema:identifier",
+        "title": "schema:name",
+        "description": "schema:description",
+        "score": "psi:auditScore",
+        "displayValue": "psi:displayValue",
+        "numericValue": "psi:numericValue"
+      }
+    }
+  }
+}
