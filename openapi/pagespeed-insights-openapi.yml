@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: PageSpeed Insights API
+  title: Google PageSpeed PageSpeed Insights API
   description: >-
     The PageSpeed Insights API runs Lighthouse audits on web pages and returns
     performance scores, Core Web Vitals metrics, Chrome User Experience Report
@@ -25,7 +25,7 @@ paths:
   /runPagespeed:
     get:
       operationId: runPagespeed
-      summary: Analyze page performance
+      summary: Google PageSpeed Analyze page performance
       description: >-
         Runs PageSpeed analysis on the given URL. Returns Lighthouse audit
         results including performance score, Core Web Vitals, and optimization
