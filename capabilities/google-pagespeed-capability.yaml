@@ -1,0 +1,131 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google PageSpeed PageSpeed Insights API
+  description: The PageSpeed Insights API runs Lighthouse audits on web pages and returns performance scores, Core Web Vitals
+    metrics, Chrome User Experience Report field data, and detailed optimization opportunities and diagnostics.
+  tags:
+  - Google
+  - Pagespeed
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: google-pagespeed
+    baseUri: https://www.googleapis.com/pagespeedonline/v5
+    description: Google PageSpeed PageSpeed Insights API HTTP API.
+    authentication:
+      type: apikey
+      in: query
+      name: key
+      value: '{{GOOGLE_PAGESPEED_TOKEN}}'
+    resources:
+    - name: runpagespeed
+      path: /runPagespeed
+      operations:
+      - name: runpagespeed
+        method: GET
+        description: Google PageSpeed Analyze page performance
+        inputParameters:
+        - name: url
+          in: query
+          type: string
+          required: true
+          description: The URL to analyze
+        - name: strategy
+          in: query
+          type: string
+          description: The analysis strategy (desktop or mobile)
+        - name: category
+          in: query
+          type: array
+          description: Lighthouse categories to run
+        - name: locale
+          in: query
+          type: string
+          description: The locale for results (e.g. en_US)
+        - name: utm_campaign
+          in: query
+          type: string
+          description: Campaign name for analytics
+        - name: utm_source
+          in: query
+          type: string
+          description: Campaign source for analytics
+        - name: captchaToken
+          in: query
+          type: string
+          description: The captcha token for the request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: google-pagespeed-rest
+    description: REST adapter for Google PageSpeed PageSpeed Insights API.
+    resources:
+    - path: /runPagespeed
+      name: runpagespeed
+      operations:
+      - method: GET
+        name: runpagespeed
+        description: Google PageSpeed Analyze page performance
+        call: google-pagespeed.runpagespeed
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: google-pagespeed-mcp
+    transport: http
+    description: MCP adapter for Google PageSpeed PageSpeed Insights API for AI agent use.
+    tools:
+    - name: runpagespeed
+      description: Google PageSpeed Analyze page performance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: google-pagespeed.runpagespeed
+      with:
+        url: tools.url
+        strategy: tools.strategy
+        category: tools.category
+        locale: tools.locale
+        utm_campaign: tools.utm_campaign
+        utm_source: tools.utm_source
+        captchaToken: tools.captchaToken
+      inputParameters:
+      - name: url
+        type: string
+        description: The URL to analyze
+        required: true
+      - name: strategy
+        type: string
+        description: The analysis strategy (desktop or mobile)
+      - name: category
+        type: array
+        description: Lighthouse categories to run
+      - name: locale
+        type: string
+        description: The locale for results (e.g. en_US)
+      - name: utm_campaign
+        type: string
+        description: Campaign name for analytics
+      - name: utm_source
+        type: string
+        description: Campaign source for analytics
+      - name: captchaToken
+        type: string
+        description: The captcha token for the request
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    GOOGLE_PAGESPEED_TOKEN: GOOGLE_PAGESPEED_TOKEN
