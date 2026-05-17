@@ -38,30 +38,30 @@ apis:
         url: openapi/pagespeed-insights-openapi.yml
       - type: Authentication
         url: https://developers.google.com/speed/docs/insights/v5/get-started#APIKey
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.google.com/speed/docs/insights/v5/get-started
       - type: JSONSchema
         url: json-schema/google-pagespeed-result-schema.json
 common:
   - type: Portal
     url: https://pagespeed.web.dev/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developers.google.com/speed/docs/insights/v5/get-started
   - type: Documentation
     url: https://developers.google.com/speed/docs/insights
   - type: Authentication
     url: https://developers.google.com/speed/docs/insights/v5/get-started#APIKey
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://developers.google.com/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://policies.google.com/privacy
-  - type: Status
+  - type: StatusPage
     url: https://status.cloud.google.com/
   - type: Support
     url: https://support.google.com/webmasters
   - type: Console
     url: https://console.cloud.google.com/apis/library/pagespeedonline.googleapis.com
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/google-pagespeed-context.jsonld
 maintainers:
   - FN: Kin Lane
