@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google PageSpeed PageSpeed Insights API",
+    "version": "v5"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google PageSpeed Analyze page performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.googleapis.com/pagespeedonline/v5/runPagespeed",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The URL to analyze"
+              },
+              {
+                "name": "strategy",
+                "value": "",
+                "type": "query",
+                "description": "The analysis strategy (desktop or mobile)"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Lighthouse categories to run"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "The locale for results (e.g. en_US)"
+              },
+              {
+                "name": "utm_campaign",
+                "value": "",
+                "type": "query",
+                "description": "Campaign name for analytics"
+              },
+              {
+                "name": "utm_source",
+                "value": "",
+                "type": "query",
+                "description": "Campaign source for analytics"
+              },
+              {
+                "name": "captchaToken",
+                "value": "",
+                "type": "query",
+                "description": "The captcha token for the request"
+              }
+            ]
+          },
+          "docs": "Runs PageSpeed analysis on the given URL. Returns Lighthouse audit results including performance score, Core Web Vitals, and optimization recommendations for both mobile and desktop strategies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
