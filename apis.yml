@@ -4,7 +4,7 @@ description: >-
   Google PageSpeed Insights provides APIs for analyzing the performance of web pages on both mobile and desktop devices,
   returning performance scores, Core Web Vitals metrics, and actionable optimization recommendations powered by
   Lighthouse.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/google-pagespeed/refs/heads/main/apis.yml
 created: '2026-03-13'
 modified: '2026-05-19'
@@ -24,7 +24,7 @@ apis:
       Lighthouse audits on the given URL and returns performance scores, Core Web Vitals metrics (Largest Contentful
       Paint, First Input Delay, Cumulative Layout Shift), field data from the Chrome User Experience Report, and
       detailed lab data with optimization opportunities and diagnostics.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.google.com/speed/docs/insights/v5/get-started
     baseURL: https://www.googleapis.com/pagespeedonline/v5
     tags:
