@@ -44,6 +44,10 @@ apis:
       - type: JSONSchema
         url: json-schema/google-pagespeed-result-schema.json
 common:
+  - type: DomainSecurity
+    url: security/google-pagespeed-domain-security.yml
+  - type: Authentication
+    url: authentication/google-pagespeed-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/pagespeed
   - type: Portal
