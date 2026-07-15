@@ -44,6 +44,8 @@ apis:
       - type: JSONSchema
         url: json-schema/google-pagespeed-result-schema.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/google-pagespeed-agentic-access.yml
   - type: DomainSecurity
     url: security/google-pagespeed-domain-security.yml
   - type: Authentication
