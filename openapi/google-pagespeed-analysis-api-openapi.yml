@@ -1,82 +1,79 @@
 openapi: 3.1.0
 info:
-  title: Google PageSpeed PageSpeed Insights API
-  description: >-
-    The PageSpeed Insights API runs Lighthouse audits on web pages and returns
-    performance scores, Core Web Vitals metrics, Chrome User Experience Report
-    field data, and detailed optimization opportunities and diagnostics.
+  title: Google PageSpeed PageSpeed Insights Analysis API
+  description: The PageSpeed Insights API runs Lighthouse audits on web pages and returns performance scores, Core Web Vitals metrics, Chrome User Experience Report field data, and detailed optimization opportunities and diagnostics.
   version: v5
   contact:
     name: Google Developers
     url: https://developers.google.com/speed
   termsOfService: https://cloud.google.com/terms
-externalDocs:
-  description: PageSpeed Insights API Reference
-  url: https://developers.google.com/speed/docs/insights/v5/reference
 servers:
-  - url: https://www.googleapis.com/pagespeedonline/v5
-    description: PageSpeed Insights API v5
-tags:
-  - name: Analysis
-    description: Page performance analysis
+- url: https://www.googleapis.com/pagespeedonline/v5
+  description: PageSpeed Insights API v5
 security:
-  - apiKey: []
+- apiKey: []
+tags:
+- name: Analysis
+  description: Page performance analysis
 paths:
   /runPagespeed:
     get:
       operationId: runPagespeed
       summary: Google PageSpeed Analyze page performance
-      description: >-
-        Runs PageSpeed analysis on the given URL. Returns Lighthouse audit
-        results including performance score, Core Web Vitals, and optimization
-        recommendations for both mobile and desktop strategies.
+      description: Runs PageSpeed analysis on the given URL. Returns Lighthouse audit results including performance score, Core Web Vitals, and optimization recommendations for both mobile and desktop strategies.
       tags:
-        - Analysis
+      - Analysis
       parameters:
-        - name: url
-          in: query
-          required: true
-          description: The URL to analyze
-          schema:
+      - name: url
+        in: query
+        required: true
+        description: The URL to analyze
+        schema:
+          type: string
+          format: uri
+      - name: strategy
+        in: query
+        description: The analysis strategy (desktop or mobile)
+        schema:
+          type: string
+          enum:
+          - DESKTOP
+          - MOBILE
+          default: MOBILE
+      - name: category
+        in: query
+        description: Lighthouse categories to run
+        schema:
+          type: array
+          items:
             type: string
-            format: uri
-        - name: strategy
-          in: query
-          description: The analysis strategy (desktop or mobile)
-          schema:
-            type: string
-            enum: [DESKTOP, MOBILE]
-            default: MOBILE
-        - name: category
-          in: query
-          description: Lighthouse categories to run
-          schema:
-            type: array
-            items:
-              type: string
-              enum: [ACCESSIBILITY, BEST_PRACTICES, PERFORMANCE, SEO]
-          style: form
-          explode: true
-        - name: locale
-          in: query
-          description: The locale for results (e.g. en_US)
-          schema:
-            type: string
-        - name: utm_campaign
-          in: query
-          description: Campaign name for analytics
-          schema:
-            type: string
-        - name: utm_source
-          in: query
-          description: Campaign source for analytics
-          schema:
-            type: string
-        - name: captchaToken
-          in: query
-          description: The captcha token for the request
-          schema:
-            type: string
+            enum:
+            - ACCESSIBILITY
+            - BEST_PRACTICES
+            - PERFORMANCE
+            - SEO
+        style: form
+        explode: true
+      - name: locale
+        in: query
+        description: The locale for results (e.g. en_US)
+        schema:
+          type: string
+      - name: utm_campaign
+        in: query
+        description: Campaign name for analytics
+        schema:
+          type: string
+      - name: utm_source
+        in: query
+        description: Campaign source for analytics
+        schema:
+          type: string
+      - name: captchaToken
+        in: query
+        description: The captcha token for the request
+        schema:
+          type: string
       responses:
         '200':
           description: PageSpeed analysis results
@@ -91,32 +88,7 @@ paths:
         '500':
           description: Internal error during analysis
 components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      name: key
-      in: query
   schemas:
-    PagespeedResult:
-      type: object
-      properties:
-        captchaResult:
-          type: string
-        kind:
-          type: string
-          default: pagespeedonline#result
-        id:
-          type: string
-          description: The URL that was analyzed
-        loadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        originLoadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        lighthouseResult:
-          $ref: '#/components/schemas/LighthouseResult'
-        analysisUTCTimestamp:
-          type: string
-          format: date-time
     LoadingExperience:
       type: object
       description: Chrome User Experience Report field data
@@ -140,8 +112,38 @@ components:
               $ref: '#/components/schemas/MetricDistribution'
         overall_category:
           type: string
-          enum: [FAST, AVERAGE, SLOW, NONE]
+          enum:
+          - FAST
+          - AVERAGE
+          - SLOW
+          - NONE
         initial_url:
+          type: string
+    Audit:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        score:
+          type: number
+        scoreDisplayMode:
+          type: string
+          enum:
+          - binary
+          - numeric
+          - informative
+          - manual
+          - notApplicable
+          - error
+        displayValue:
+          type: string
+        numericValue:
+          type: number
+        numericUnit:
           type: string
     MetricDistribution:
       type: object
@@ -161,7 +163,30 @@ components:
                 type: number
         category:
           type: string
-          enum: [FAST, AVERAGE, SLOW]
+          enum:
+          - FAST
+          - AVERAGE
+          - SLOW
+    PagespeedResult:
+      type: object
+      properties:
+        captchaResult:
+          type: string
+        kind:
+          type: string
+          default: pagespeedonline#result
+        id:
+          type: string
+          description: The URL that was analyzed
+        loadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        originLoadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        lighthouseResult:
+          $ref: '#/components/schemas/LighthouseResult'
+        analysisUTCTimestamp:
+          type: string
+          format: date-time
     LighthouseResult:
       type: object
       properties:
@@ -224,23 +249,11 @@ components:
                 type: number
               group:
                 type: string
-    Audit:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        score:
-          type: number
-        scoreDisplayMode:
-          type: string
-          enum: [binary, numeric, informative, manual, notApplicable, error]
-        displayValue:
-          type: string
-        numericValue:
-          type: number
-        numericUnit:
-          type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: key
+      in: query
+externalDocs:
+  description: PageSpeed Insights API Reference
+  url: https://developers.google.com/speed/docs/insights/v5/reference
