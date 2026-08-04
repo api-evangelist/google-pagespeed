@@ -1,0 +1,408 @@
+{
+  "info": {
+    "_postman_id": "347026e7-664b-444e-a0a1-90156be396c9",
+    "name": "Google PageSpeed PageSpeed Insights Analysis API",
+    "description": "The PageSpeed Insights API runs Lighthouse audits on web pages and returns performance scores, Core Web Vitals metrics, Chrome User Experience Report field data, and detailed optimization opportunities and diagnostics.\n\nContact Support:\n Name: Google Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:49:55.000Z",
+    "updatedAt": "2026-07-28T01:49:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-347026e7-664b-444e-a0a1-90156be396c9"
+  },
+  "item": [
+    {
+      "name": "runPagespeed",
+      "item": [
+        {
+          "name": "Google PageSpeed Analyze page performance",
+          "id": "77737a44-4aaf-4823-89c5-775d6ac49d00",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/runPagespeed?url=<uri>&strategy=MOBILE&category=BEST_PRACTICES&category=PERFORMANCE&locale=<string>&utm_campaign=<string>&utm_source=<string>&captchaToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "runPagespeed"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The URL to analyze",
+                  "key": "url",
+                  "value": "<uri>"
+                },
+                {
+                  "description": "The analysis strategy (desktop or mobile)",
+                  "key": "strategy",
+                  "value": "MOBILE"
+                },
+                {
+                  "description": "Lighthouse categories to run",
+                  "key": "category",
+                  "value": "BEST_PRACTICES"
+                },
+                {
+                  "description": "Lighthouse categories to run",
+                  "key": "category",
+                  "value": "PERFORMANCE"
+                },
+                {
+                  "description": "The locale for results (e.g. en_US)",
+                  "key": "locale",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Campaign name for analytics",
+                  "key": "utm_campaign",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Campaign source for analytics",
+                  "key": "utm_source",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The captcha token for the request",
+                  "key": "captchaToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Runs PageSpeed analysis on the given URL. Returns Lighthouse audit results including performance score, Core Web Vitals, and optimization recommendations for both mobile and desktop strategies."
+          },
+          "response": [
+            {
+              "id": "ce7a4a11-966e-41c7-9632-b243afd34f0f",
+              "name": "PageSpeed analysis results",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/runPagespeed?url=<uri>&strategy=MOBILE&category=PERFORMANCE&locale=<string>&utm_campaign=<string>&utm_source=<string>&captchaToken=<string>&key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The URL to analyze",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "The analysis strategy (desktop or mobile)",
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "description": "Lighthouse categories to run",
+                      "key": "category",
+                      "value": "PERFORMANCE"
+                    },
+                    {
+                      "description": "The locale for results (e.g. en_US)",
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign name for analytics",
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign source for analytics",
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The captcha token for the request",
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"captchaResult\": \"<string>\",\n  \"kind\": \"pagespeedonline#result\",\n  \"id\": \"<string>\",\n  \"loadingExperience\": {\n    \"id\": \"<string>\",\n    \"metrics\": {\n      \"LARGEST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"SLOW\"\n      },\n      \"FIRST_INPUT_DELAY_MS\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      },\n      \"CUMULATIVE_LAYOUT_SHIFT_SCORE\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"FAST\"\n      },\n      \"INTERACTION_TO_NEXT_PAINT\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"SLOW\"\n      },\n      \"FIRST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      },\n      \"EXPERIMENTAL_TIME_TO_FIRST_BYTE\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      }\n    },\n    \"overall_category\": \"SLOW\",\n    \"initial_url\": \"<string>\"\n  },\n  \"originLoadingExperience\": {\n    \"id\": \"<string>\",\n    \"metrics\": {\n      \"LARGEST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"FAST\"\n      },\n      \"FIRST_INPUT_DELAY_MS\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"SLOW\"\n      },\n      \"CUMULATIVE_LAYOUT_SHIFT_SCORE\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      },\n      \"INTERACTION_TO_NEXT_PAINT\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"FAST\"\n      },\n      \"FIRST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"SLOW\"\n      },\n      \"EXPERIMENTAL_TIME_TO_FIRST_BYTE\": {\n        \"percentile\": \"<integer>\",\n        \"distributions\": [\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          },\n          {\n            \"min\": \"<integer>\",\n            \"max\": \"<integer>\",\n            \"proportion\": \"<number>\"\n          }\n        ],\n        \"category\": \"SLOW\"\n      }\n    },\n    \"overall_category\": \"FAST\",\n    \"initial_url\": \"<string>\"\n  },\n  \"lighthouseResult\": {\n    \"requestedUrl\": \"<string>\",\n    \"finalUrl\": \"<string>\",\n    \"lighthouseVersion\": \"<string>\",\n    \"fetchTime\": \"<dateTime>\",\n    \"userAgent\": \"<string>\",\n    \"environment\": {\n      \"networkUserAgent\": \"<string>\",\n      \"hostUserAgent\": \"<string>\",\n      \"benchmarkIndex\": \"<number>\"\n    },\n    \"categories\": {\n      \"performance\": {\n        \"id\": \"<string>\",\n        \"title\": \"<string>\",\n        \"score\": \"<number>\",\n        \"description\": \"<string>\",\n        \"auditRefs\": [\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      },\n      \"accessibility\": {\n        \"id\": \"<string>\",\n        \"title\": \"<string>\",\n        \"score\": \"<number>\",\n        \"description\": \"<string>\",\n        \"auditRefs\": [\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      },\n      \"best-practices\": {\n        \"id\": \"<string>\",\n        \"title\": \"<string>\",\n        \"score\": \"<number>\",\n        \"description\": \"<string>\",\n        \"auditRefs\": [\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      },\n      \"seo\": {\n        \"id\": \"<string>\",\n        \"title\": \"<string>\",\n        \"score\": \"<number>\",\n        \"description\": \"<string>\",\n        \"auditRefs\": [\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"weight\": \"<number>\",\n            \"group\": \"<string>\"\n          }\n        ]\n      }\n    },\n    \"audits\": {\n      \"suntbd8\": {\n        \"id\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"score\": \"<number>\",\n        \"scoreDisplayMode\": \"notApplicable\",\n        \"displayValue\": \"<string>\",\n        \"numericValue\": \"<number>\",\n        \"numericUnit\": \"<string>\"\n      }\n    }\n  },\n  \"analysisUTCTimestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:49:56.000Z",
+              "updatedAt": "2026-07-28T01:49:56.000Z",
+              "uid": "35240-ce7a4a11-966e-41c7-9632-b243afd34f0f"
+            },
+            {
+              "id": "6d5e8585-d6ff-4ce0-92aa-e474c767fe6a",
+              "name": "Invalid URL or parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/runPagespeed?url=<uri>&strategy=MOBILE&category=PERFORMANCE&locale=<string>&utm_campaign=<string>&utm_source=<string>&captchaToken=<string>&key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The URL to analyze",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "The analysis strategy (desktop or mobile)",
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "description": "Lighthouse categories to run",
+                      "key": "category",
+                      "value": "PERFORMANCE"
+                    },
+                    {
+                      "description": "The locale for results (e.g. en_US)",
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign name for analytics",
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign source for analytics",
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The captcha token for the request",
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:56.000Z",
+              "updatedAt": "2026-07-28T01:49:56.000Z",
+              "uid": "35240-6d5e8585-d6ff-4ce0-92aa-e474c767fe6a"
+            },
+            {
+              "id": "c525b634-0e7e-47ad-bdc8-4d85a1ebe7a3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/runPagespeed?url=<uri>&strategy=MOBILE&category=PERFORMANCE&locale=<string>&utm_campaign=<string>&utm_source=<string>&captchaToken=<string>&key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The URL to analyze",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "The analysis strategy (desktop or mobile)",
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "description": "Lighthouse categories to run",
+                      "key": "category",
+                      "value": "PERFORMANCE"
+                    },
+                    {
+                      "description": "The locale for results (e.g. en_US)",
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign name for analytics",
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign source for analytics",
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The captcha token for the request",
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:56.000Z",
+              "updatedAt": "2026-07-28T01:49:56.000Z",
+              "uid": "35240-c525b634-0e7e-47ad-bdc8-4d85a1ebe7a3"
+            },
+            {
+              "id": "1b63f58b-b136-41a2-b537-f88200885bc2",
+              "name": "Internal error during analysis",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/runPagespeed?url=<uri>&strategy=MOBILE&category=PERFORMANCE&locale=<string>&utm_campaign=<string>&utm_source=<string>&captchaToken=<string>&key=<API Key>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The URL to analyze",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "The analysis strategy (desktop or mobile)",
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "description": "Lighthouse categories to run",
+                      "key": "category",
+                      "value": "PERFORMANCE"
+                    },
+                    {
+                      "description": "The locale for results (e.g. en_US)",
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign name for analytics",
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Campaign source for analytics",
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The captcha token for the request",
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Added as a part of security scheme: apikey",
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:49:56.000Z",
+              "updatedAt": "2026-07-28T01:49:56.000Z",
+              "uid": "35240-1b63f58b-b136-41a2-b537-f88200885bc2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:49:55.000Z",
+          "updatedAt": "2026-07-28T01:49:55.000Z",
+          "uid": "35240-77737a44-4aaf-4823-89c5-775d6ac49d00"
+        }
+      ],
+      "id": "7511f913-9698-4229-8ab0-6c23442a1aa3",
+      "createdAt": "2026-07-28T01:49:55.000Z",
+      "updatedAt": "2026-07-28T01:49:55.000Z",
+      "uid": "35240-7511f913-9698-4229-8ab0-6c23442a1aa3"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://www.googleapis.com/pagespeedonline/v5"
+    }
+  ]
+}

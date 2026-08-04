@@ -1,0 +1,246 @@
+openapi: 3.1.0
+info:
+  title: Google PageSpeed PageSpeed Insights API
+  description: >-
+    The PageSpeed Insights API runs Lighthouse audits on web pages and returns
+    performance scores, Core Web Vitals metrics, Chrome User Experience Report
+    field data, and detailed optimization opportunities and diagnostics.
+  version: v5
+  contact:
+    name: Google Developers
+    url: https://developers.google.com/speed
+  termsOfService: https://cloud.google.com/terms
+externalDocs:
+  description: PageSpeed Insights API Reference
+  url: https://developers.google.com/speed/docs/insights/v5/reference
+servers:
+  - url: https://www.googleapis.com/pagespeedonline/v5
+    description: PageSpeed Insights API v5
+tags:
+  - name: Analysis
+    description: Page performance analysis
+security:
+  - apiKey: []
+paths:
+  /runPagespeed:
+    get:
+      operationId: runPagespeed
+      summary: Google PageSpeed Analyze page performance
+      description: >-
+        Runs PageSpeed analysis on the given URL. Returns Lighthouse audit
+        results including performance score, Core Web Vitals, and optimization
+        recommendations for both mobile and desktop strategies.
+      tags:
+        - Analysis
+      parameters:
+        - name: url
+          in: query
+          required: true
+          description: The URL to analyze
+          schema:
+            type: string
+            format: uri
+        - name: strategy
+          in: query
+          description: The analysis strategy (desktop or mobile)
+          schema:
+            type: string
+            enum: [DESKTOP, MOBILE]
+            default: MOBILE
+        - name: category
+          in: query
+          description: Lighthouse categories to run
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [ACCESSIBILITY, BEST_PRACTICES, PERFORMANCE, SEO]
+          style: form
+          explode: true
+        - name: locale
+          in: query
+          description: The locale for results (e.g. en_US)
+          schema:
+            type: string
+        - name: utm_campaign
+          in: query
+          description: Campaign name for analytics
+          schema:
+            type: string
+        - name: utm_source
+          in: query
+          description: Campaign source for analytics
+          schema:
+            type: string
+        - name: captchaToken
+          in: query
+          description: The captcha token for the request
+          schema:
+            type: string
+      responses:
+        '200':
+          description: PageSpeed analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagespeedResult'
+        '400':
+          description: Invalid URL or parameters
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Internal error during analysis
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: key
+      in: query
+  schemas:
+    PagespeedResult:
+      type: object
+      properties:
+        captchaResult:
+          type: string
+        kind:
+          type: string
+          default: pagespeedonline#result
+        id:
+          type: string
+          description: The URL that was analyzed
+        loadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        originLoadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        lighthouseResult:
+          $ref: '#/components/schemas/LighthouseResult'
+        analysisUTCTimestamp:
+          type: string
+          format: date-time
+    LoadingExperience:
+      type: object
+      description: Chrome User Experience Report field data
+      properties:
+        id:
+          type: string
+        metrics:
+          type: object
+          properties:
+            LARGEST_CONTENTFUL_PAINT_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            FIRST_INPUT_DELAY_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            CUMULATIVE_LAYOUT_SHIFT_SCORE:
+              $ref: '#/components/schemas/MetricDistribution'
+            INTERACTION_TO_NEXT_PAINT:
+              $ref: '#/components/schemas/MetricDistribution'
+            FIRST_CONTENTFUL_PAINT_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            EXPERIMENTAL_TIME_TO_FIRST_BYTE:
+              $ref: '#/components/schemas/MetricDistribution'
+        overall_category:
+          type: string
+          enum: [FAST, AVERAGE, SLOW, NONE]
+        initial_url:
+          type: string
+    MetricDistribution:
+      type: object
+      properties:
+        percentile:
+          type: integer
+        distributions:
+          type: array
+          items:
+            type: object
+            properties:
+              min:
+                type: integer
+              max:
+                type: integer
+              proportion:
+                type: number
+        category:
+          type: string
+          enum: [FAST, AVERAGE, SLOW]
+    LighthouseResult:
+      type: object
+      properties:
+        requestedUrl:
+          type: string
+        finalUrl:
+          type: string
+        lighthouseVersion:
+          type: string
+        fetchTime:
+          type: string
+          format: date-time
+        userAgent:
+          type: string
+        environment:
+          type: object
+          properties:
+            networkUserAgent:
+              type: string
+            hostUserAgent:
+              type: string
+            benchmarkIndex:
+              type: number
+        categories:
+          type: object
+          properties:
+            performance:
+              $ref: '#/components/schemas/Category'
+            accessibility:
+              $ref: '#/components/schemas/Category'
+            best-practices:
+              $ref: '#/components/schemas/Category'
+            seo:
+              $ref: '#/components/schemas/Category'
+        audits:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Audit'
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        description:
+          type: string
+        auditRefs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              weight:
+                type: number
+              group:
+                type: string
+    Audit:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        score:
+          type: number
+        scoreDisplayMode:
+          type: string
+          enum: [binary, numeric, informative, manual, notApplicable, error]
+        displayValue:
+          type: string
+        numericValue:
+          type: number
+        numericUnit:
+          type: string

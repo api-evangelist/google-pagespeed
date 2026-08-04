@@ -1,0 +1,14 @@
+{
+  "provider": "google-pagespeed",
+  "sources": [
+    "google-pagespeed-analysis-api-openapi.yml"
+  ],
+  "outputs": [
+    "google-pagespeed-analysis-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
