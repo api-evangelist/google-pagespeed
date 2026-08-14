@@ -20,7 +20,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/google-pagespeed.png
 url: https://raw.githubusercontent.com/api-evangelist/google-pagespeed/refs/heads/main/apis.yml
 created: '2026-03-13'
-modified: '2026-05-19'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 type: Index
 tags:
@@ -41,6 +41,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/google-pagespeed-analysis-api-openapi.yml
+  - type: OpenAPI Discovery
+    url: https://pagespeedonline.googleapis.com/$discovery/rest?version=v5
+  - type: Overlay
+    url: overlays/google-pagespeed-analysis-api-overlay.yaml
   - type: Documentation
     url: https://developers.google.com/speed/docs/insights/v5/reference
   - type: Authentication
@@ -80,6 +84,55 @@ common:
     url: https://console.cloud.google.com/apis/library/pagespeedonline.googleapis.com
   - type: JSONLD
     url: json-ld/google-pagespeed-context.jsonld
+  - type: APIReference
+    url: https://developers.google.com/speed/docs/insights/v5/reference
+  - type: SignUp
+    url: https://console.cloud.google.com/apis/credentials
+  - type: Packages
+    url: packages/google-pagespeed-packages.yml
+  - type: SDKs
+    url: packages/google-pagespeed-packages.yml
+  - type: SecurityTxt
+    url: well-known/google-pagespeed-security.txt
+  - type: VulnerabilityDisclosure
+    url: security/google-pagespeed-vulnerability-disclosure.yml
+  - type: Security
+    url: https://g.co/vrp
+  - type: LLMsTxt
+    url: llms/google-pagespeed-llms.txt
+  - type: Conformance
+    url: conformance/google-pagespeed-conformance.yml
+  - type: ErrorCatalog
+    url: errors/google-pagespeed-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/google-pagespeed-lifecycle.yml
+  - type: Deprecation
+    url: https://developers.google.com/speed/docs/insights/release_notes
+  - type: ChangeLog
+    url: changelog/google-pagespeed-changelog.yml
+  - type: OAuthScopes
+    url: scopes/google-pagespeed-scopes.yml
+  - type: Sandbox
+    url: sandbox/google-pagespeed-sandbox.yml
+  - type: Conventions
+    url: conventions/google-pagespeed-conventions.yml
+  - type: DataModel
+    url: data-model/google-pagespeed-data-model.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Plans
+    url: plans/google-pagespeed-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/google-pagespeed-rate-limits.yml
+  - type: SpectralRules
+    url: rules/google-pagespeed-jsonschema-spectral-rules.yml
+  - type: PostmanCollection
+    url: postman/google-pagespeed-analysis-api.postman_collection.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1
