@@ -1,0 +1,93 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live unauthenticated calls to https://www.googleapis.com/pagespeedonline/v5/runPagespeed
+  on 2026-08-13, cross-checked against openapi/google-pagespeed-analysis-api-openapi.yml
+  and https://developers.google.com/speed/docs/insights/v5/reference/pagespeedapi/runpagespeed
+format: google-rpc
+rfc9457: false
+note: >-
+  The PageSpeed Insights API does NOT use RFC 9457 application/problem+json. It returns
+  the standard Google API error envelope as application/json. Both bodies below were
+  captured verbatim from live probes; the 500 entry is documented in the OpenAPI but was
+  not observed and is marked accordingly.
+envelope:
+  content_type: application/json; charset=UTF-8
+  shape:
+    error:
+      code: integer (mirrors the HTTP status)
+      message: string
+      status: string (google.rpc.Code name, e.g. INVALID_ARGUMENT, RESOURCE_EXHAUSTED)
+      errors: array of {message, domain, reason} — the legacy Google API error list
+      details: array of typed details, e.g. type.googleapis.com/google.rpc.ErrorInfo,
+        type.googleapis.com/google.rpc.Help, type.googleapis.com/google.rpc.LocalizedMessage
+  machine_readable_reason: error.details[].reason on the google.rpc.ErrorInfo detail
+problems:
+  - status: 400
+    google_status: INVALID_ARGUMENT
+    reason: API_KEY_INVALID
+    title: API key not valid
+    detail_observed: Please pass a valid API key.
+    remediation: >-
+      Create or repair the key at https://console.cloud.google.com/apis/credentials and
+      pass it on the `key` query parameter. Confirm the key is not restricted away from
+      pagespeedonline.googleapis.com.
+    observed: true
+    source_operation: openapi/google-pagespeed-analysis-api-openapi.yml#runPagespeed
+  - status: 400
+    google_status: INVALID_ARGUMENT
+    reason: null
+    title: Invalid URL or parameters
+    detail_observed: null
+    remediation: >-
+      Supply an absolute http(s) URL on `url`; `strategy` must be DESKTOP or MOBILE and
+      `category` one of ACCESSIBILITY, BEST_PRACTICES, PERFORMANCE, SEO.
+    observed: false
+    note: Declared in the OpenAPI; not reproduced live because the shared anonymous quota
+      short-circuits every unkeyed request with a 429 before validation.
+    source_operation: openapi/google-pagespeed-analysis-api-openapi.yml#runPagespeed
+  - status: 429
+    google_status: RESOURCE_EXHAUSTED
+    reason: RATE_LIMIT_EXCEEDED
+    legacy_reason: rateLimitExceeded
+    title: Quota exceeded
+    detail_observed: >-
+      Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service
+      'pagespeedonline.googleapis.com'
+    metadata_observed:
+      quota_metric: pagespeedonline.googleapis.com/default
+      quota_limit: defaultPerDayPerProject
+      quota_unit: 1/d/{project}
+      quota_location: global
+    help_link: https://cloud.google.com/docs/quotas/help/request_increase
+    remediation: >-
+      Use your own API key so the quota is charged to your project rather than the shared
+      anonymous pool, then request a quota increase in the Cloud Console. No Retry-After
+      header is returned, so back off exponentially with jitter.
+    observed: true
+    source_operation: openapi/google-pagespeed-analysis-api-openapi.yml#runPagespeed
+  - status: 500
+    google_status: INTERNAL
+    title: Internal error during analysis
+    remediation: >-
+      Lighthouse analysis failed server-side. Retry; the call is a safe GET so retries
+      are free of side effects.
+    observed: false
+    source_operation: openapi/google-pagespeed-analysis-api-openapi.yml#runPagespeed
+in_body_soft_failures:
+  - field: captchaResult
+    schema_description: "The captcha verify result (Discovery: PagespeedApiPagespeedResponseV5, untyped string, no published enum)"
+    observed_value: CAPTCHA_NOT_NEEDED
+    note: >-
+      PageSpeed can require a CAPTCHA rather than returning an HTTP error. Google's own
+      sample response documents captchaResult "CAPTCHA_NOT_NEEDED"; the operation also
+      accepts a `captchaToken` query parameter, so a 200 whose captchaResult is not the
+      not-needed value is a soft failure an agent must inspect and re-issue with a token.
+      Google publishes no enumeration of the other values, so none is listed here.
+  - field: lighthouseResult.runtimeError
+    note: >-
+      A 200 can still carry a Lighthouse runtime error (for example a page that failed
+      to load). Check lighthouseResult.runtimeError.code before trusting the scores.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

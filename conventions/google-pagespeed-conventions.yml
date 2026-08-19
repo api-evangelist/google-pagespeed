@@ -1,0 +1,94 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.google.com/speed/docs/insights/v5/get-started,
+  https://pagespeedonline.googleapis.com/$discovery/rest?version=v5 (revision 20260811),
+  and live probes of https://www.googleapis.com/pagespeedonline/v5/runPagespeed on 2026-08-13
+note: >-
+  This API is a single read-only GET. Most cross-cutting conventions that exist for a
+  CRUD API simply do not apply here, and they are recorded as explicit false/none rather
+  than omitted — an absence a caller can rely on is worth as much as a presence.
+authentication:
+  style: api-key-query
+  parameter: key
+  header_alternative: null
+  see: authentication/google-pagespeed-authentication.yml
+idempotency:
+  supported: false
+  key_header: null
+  note: >-
+    There is no idempotency-key contract. The only operation is a GET, which is idempotent
+    and safe by HTTP method, so a retry is free of side effects — but that is HTTP
+    semantics, not a provider idempotency guarantee, and no Idempotency pointer is wired
+    for it.
+pagination:
+  supported: false
+  style: null
+  note: One request analyses one URL and returns one result document. Nothing to page.
+field_selection:
+  supported: true
+  parameter: fields
+  style: google-partial-response
+  description: >-
+    Google's standard partial-response selector. `fields=lighthouseResult/categories/performance/score`
+    trims the response to the requested subtree — materially useful here because a full
+    PageSpeed response is very large.
+  docs: https://developers.google.com/speed/docs/insights/v5/reference/pagespeedapi/runpagespeed
+system_parameters:
+  source: Discovery document global `parameters` block
+  parameters:
+    - {name: fields, description: Selector specifying which fields to include in a partial response}
+    - {name: alt, description: Data format for the response}
+    - {name: prettyPrint, description: Returns response with indentations and line breaks}
+    - {name: quotaUser, description: Opaque per-user string for quota attribution when no user ID is available}
+    - {name: callback, description: JSONP callback}
+    - {name: key, description: API key}
+    - {name: access_token, description: OAuth access token}
+    - {name: oauth_token, description: OAuth 2.0 token for the current user}
+    - {name: upload_protocol, description: Upload protocol for media}
+    - {name: uploadType, description: Legacy upload protocol}
+    - {name: "$.xgafv", description: V1 error format}
+metadata:
+  supported: false
+  note: No user-supplied metadata is carried on requests or responses.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation header was observed on live responses. Response headers
+    are minimal — vary, content-type, server: ESF, alt-svc. `quotaUser` is the only
+    caller-supplied attribution handle, and it is a quota tag rather than a trace id.
+versioning:
+  style: uri-path
+  current: v5
+  contract_drift: discovery-revision + lighthouse-engine-version
+  see: lifecycle/google-pagespeed-lifecycle.yml
+error_envelope:
+  format: google-rpc
+  rfc9457: false
+  content_type: application/json
+  see: errors/google-pagespeed-problem-types.yml
+rate_limit_signaling:
+  headers: none
+  observed_headers: []
+  exhaustion_status: 429
+  retry_after: false
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header is returned, on success or on
+    exhaustion. An agent gets no runtime budget signal and must back off blind on 429.
+  see: rate-limits/google-pagespeed-rate-limits.yml
+long_running:
+  async: false
+  timeout_seconds: 120
+  note: >-
+    The call runs a real Lighthouse audit synchronously; Google's release notes record
+    the maximum request timeout being raised to 120 seconds. Set client timeouts
+    accordingly — this is the convention most integrations get wrong.
+webhooks_events:
+  supported: false
+  note: No webhook, streaming or event surface exists.
+write_surface:
+  supported: false
+  note: Read-only API. No POST/PUT/PATCH/DELETE operations exist.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

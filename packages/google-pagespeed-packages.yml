@@ -1,0 +1,137 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/speed/docs/insights/libraries
+note: >-
+  Google does not ship a PageSpeed-Insights-only SDK. Access is delivered through the
+  Google APIs client libraries, which the PageSpeed Insights "Libraries and Samples"
+  page names as the supported client surface. Two of them are genuinely
+  PageSpeed-specific generated packages (the Ruby google-apis-pagespeedonline_v5 gem,
+  the Java com.google.apis:google-api-services-pagespeedonline artifact, the .NET
+  Google.Apis.PagespeedInsights.v5 package and the npm @googleapis/pagespeedonline
+  module); the rest are umbrella clients that cover every Google Discovery API,
+  including pagespeedonline v5. Versions and dates read from each registry's
+  metadata endpoint on 2026-08-13.
+packages:
+  - language: javascript
+    registry: npm
+    name: "@googleapis/pagespeedonline"
+    url: https://www.npmjs.com/package/@googleapis/pagespeedonline
+    install: npm install @googleapis/pagespeedonline
+    official: true
+    scope: pagespeed-specific
+    version: 6.0.0
+    published: '2026-08-03'
+    source_code: https://github.com/googleapis/google-api-nodejs-client
+  - language: javascript
+    registry: npm
+    name: googleapis
+    url: https://www.npmjs.com/package/googleapis
+    install: npm install googleapis
+    official: true
+    scope: umbrella
+    version: 174.0.1
+    published: '2026-08-05'
+    source_code: https://github.com/googleapis/google-api-nodejs-client
+  - language: python
+    registry: pypi
+    name: google-api-python-client
+    url: https://pypi.org/project/google-api-python-client/
+    install: pip install google-api-python-client
+    official: true
+    scope: umbrella
+    version: 2.198.0
+    published: '2026-06-25'
+    source_code: https://github.com/googleapis/google-api-python-client
+  - language: ruby
+    registry: rubygems
+    name: google-apis-pagespeedonline_v5
+    url: https://rubygems.org/gems/google-apis-pagespeedonline_v5
+    install: gem install google-apis-pagespeedonline_v5
+    official: true
+    scope: pagespeed-specific
+    version: 0.23.0
+    published: '2026-07-05'
+    source_code: https://github.com/googleapis/google-api-ruby-client
+  - language: java
+    registry: maven
+    name: com.google.apis:google-api-services-pagespeedonline
+    url: https://central.sonatype.com/artifact/com.google.apis/google-api-services-pagespeedonline
+    install: "implementation 'com.google.apis:google-api-services-pagespeedonline:v5-rev20240829-2.0.0'"
+    official: true
+    scope: pagespeed-specific
+    version: v5-rev20240829-2.0.0
+    published: '2024-09-02'
+    note: >-
+      Latest Maven Central release is from 2024-09-02 — the generated Java client has not
+      been re-cut against a newer Discovery revision in nearly two years, while the live
+      Discovery document is at revision 20260811. This is the clearest published decay
+      signal on the PageSpeed client surface.
+  - language: dotnet
+    registry: nuget
+    name: Google.Apis.PagespeedInsights.v5
+    url: https://www.nuget.org/packages/Google.Apis.PagespeedInsights.v5
+    install: dotnet add package Google.Apis.PagespeedInsights.v5
+    official: true
+    scope: pagespeed-specific
+    version: 1.75.0.4197
+    published: '2026-07-02'
+  - language: dotnet
+    registry: nuget
+    name: Google.Apis.Pagespeedonline.v5
+    url: https://www.nuget.org/packages/Google.Apis.Pagespeedonline.v5
+    official: true
+    scope: pagespeed-specific
+    status: superseded
+    version: 1.43.0.1800
+    published: null
+    note: >-
+      Legacy .NET package id, superseded by Google.Apis.PagespeedInsights.v5. Last
+      version on the NuGet registration index is 1.43.0.1800; the publish date was not
+      exposed by the registration leaf queried, recorded as null rather than guessed.
+  - language: go
+    registry: gomodules
+    name: google.golang.org/api
+    url: https://pkg.go.dev/google.golang.org/api/pagespeedonline/v5
+    install: go get google.golang.org/api/pagespeedonline/v5
+    official: true
+    scope: umbrella
+    version: v0.293.0
+    published: '2026-08-11'
+    source_code: https://github.com/googleapis/google-api-go-client
+  - language: php
+    registry: packagist
+    name: google/apiclient
+    url: https://packagist.org/packages/google/apiclient
+    install: composer require google/apiclient
+    official: true
+    scope: umbrella
+    version: v2.19.4
+    published: '2026-06-29'
+    source_code: https://github.com/googleapis/google-api-php-client
+  - language: objective-c
+    registry: null
+    name: google-api-objectivec-client-for-rest
+    url: https://github.com/google/google-api-objectivec-client-for-rest
+    official: true
+    scope: umbrella
+    version: null
+    published: null
+    note: >-
+      Distributed from GitHub (CocoaPods/SwiftPM) rather than a registry this pass
+      queried; version left null rather than guessed.
+  - language: dart
+    registry: null
+    name: googleapis
+    url: https://pub.dev/packages/googleapis
+    official: true
+    scope: umbrella
+    stage: beta
+    version: null
+    published: null
+    note: >-
+      Listed by Google as an early-stage library; pub.dev metadata was not queried this
+      pass, so version/published are recorded as null (checked, nothing recorded) rather
+      than omitted.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,105 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/pagespeed-insights-discovery.json (Google Discovery document,
+  revision 20260811, harvested 2026-08-13) cross-checked against
+  openapi/google-pagespeed-analysis-api-openapi.yml
+note: >-
+  Derived from Google's own Discovery document, which carries 20 schemas — four times the
+  five the refined OpenAPI in this repo declares. There are no ids, no id-prefixes and no
+  foreign keys: this is a single immutable analysis document, not a persisted resource
+  graph, so every relationship below is composition (has_one / has_many / map_of), and
+  there are no belongs_to edges to record.
+root: PagespeedApiPagespeedResponseV5
+entities:
+  - name: PagespeedApiPagespeedResponseV5
+    role: root analysis result
+    key_fields: [captchaResult, kind, id, analysisUTCTimestamp]
+    id_field: id
+    id_semantics: the analysed URL, not an opaque identifier
+  - name: PagespeedApiLoadingExperienceV5
+    role: Chrome User Experience Report field data (real-user)
+    deprecation_planned: true
+    deprecation_note: >-
+      Google states it plans to discontinue including CrUX field data in this API; see
+      lifecycle/google-pagespeed-lifecycle.yml.
+  - name: UserPageLoadMetricV5
+    role: one field metric distribution (LCP, INP, CLS, FCP, TTFB)
+  - name: Bucket
+    role: one min/max/proportion bucket inside a metric distribution
+  - name: LighthouseResultV5
+    role: the Lighthouse report (lab data) — the largest entity, 19 properties
+  - name: LighthouseAuditResultV5
+    role: one Lighthouse audit outcome
+  - name: MetricSavings
+    role: estimated metric savings attached to an audit
+  - name: Categories
+    role: category container
+  - name: LighthouseCategoryV5
+    role: one scored category
+  - name: AuditRefs
+    role: pointer from a category to a weighted audit
+  - name: CategoryGroupV5
+    role: display grouping of audits
+  - name: ConfigSettings
+    role: run configuration (form factor, locale, categories requested)
+  - name: Environment
+    role: user agents and benchmark index of the analysis machine
+  - name: RuntimeError
+    role: top-level Lighthouse failure that invalidates the result
+  - name: LhrEntity
+    role: third-party entity attribution for network requests
+  - name: StackPack
+    role: framework/CMS-specific remediation advice
+  - name: I18n
+    role: localisation container
+  - name: RendererFormattedStrings
+    role: 48 localised UI strings for rendering the report
+  - name: Timing
+    role: total analysis time
+  - name: PagespeedVersion
+    role: major/minor version of the PageSpeed service that produced the result
+relationships:
+  - {from: PagespeedApiPagespeedResponseV5, to: LighthouseResultV5, type: has_one, via: lighthouseResult}
+  - {from: PagespeedApiPagespeedResponseV5, to: PagespeedApiLoadingExperienceV5, type: has_one, via: loadingExperience}
+  - {from: PagespeedApiPagespeedResponseV5, to: PagespeedApiLoadingExperienceV5, type: has_one, via: originLoadingExperience}
+  - {from: PagespeedApiPagespeedResponseV5, to: PagespeedVersion, type: has_one, via: version}
+  - {from: PagespeedApiLoadingExperienceV5, to: UserPageLoadMetricV5, type: map_of, via: metrics}
+  - {from: UserPageLoadMetricV5, to: Bucket, type: has_many, via: distributions}
+  - {from: LighthouseResultV5, to: LighthouseAuditResultV5, type: map_of, via: audits}
+  - {from: LighthouseResultV5, to: CategoryGroupV5, type: map_of, via: categoryGroups}
+  - {from: LighthouseResultV5, to: Categories, type: has_one, via: categories}
+  - {from: LighthouseResultV5, to: RuntimeError, type: has_one, via: runtimeError}
+  - {from: LighthouseResultV5, to: ConfigSettings, type: has_one, via: configSettings}
+  - {from: LighthouseResultV5, to: Environment, type: has_one, via: environment}
+  - {from: LighthouseResultV5, to: LhrEntity, type: has_many, via: entities}
+  - {from: LighthouseResultV5, to: StackPack, type: has_many, via: stackPacks}
+  - {from: LighthouseResultV5, to: I18n, type: has_one, via: i18n}
+  - {from: LighthouseResultV5, to: Timing, type: has_one, via: timing}
+  - {from: LighthouseAuditResultV5, to: MetricSavings, type: has_one, via: metricSavings}
+  - {from: LighthouseCategoryV5, to: AuditRefs, type: has_many, via: auditRefs}
+  - {from: Categories, to: LighthouseCategoryV5, type: has_one, via: performance}
+  - {from: Categories, to: LighthouseCategoryV5, type: has_one, via: accessibility}
+  - {from: Categories, to: LighthouseCategoryV5, type: has_one, via: best-practices}
+  - {from: Categories, to: LighthouseCategoryV5, type: has_one, via: seo}
+  - {from: Categories, to: LighthouseCategoryV5, type: has_one, via: pwa}
+  - {from: Categories, to: LighthouseCategoryV5, type: has_one, via: agentic-browsing}
+  - {from: I18n, to: RendererFormattedStrings, type: has_one, via: rendererFormattedStrings}
+findings:
+  - >-
+    The Discovery document's Categories entity carries an `agentic-browsing` category
+    alongside performance, accessibility, best-practices, seo and pwa. It is present in
+    the live contract (revision 20260811) but is not documented on the PageSpeed Insights
+    reference pages and is not among the four values the `category` query parameter
+    accepts, so it can only be read out of a response, not requested.
+  - >-
+    Two of the root's four child objects (loadingExperience, originLoadingExperience)
+    hang off the CrUX field-data branch Google has announced it intends to remove.
+    Roughly a quarter of the top-level response shape is on notice.
+  - >-
+    The refined OpenAPI in this repo models 5 schemas against the Discovery document's
+    20. Consumers wanting the full response shape should read the Discovery document or
+    json-schema/google-pagespeed-result-schema.json rather than the OpenAPI components.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,78 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/google-pagespeed-analysis-api-openapi.yml,
+  openapi/_original/pagespeed-insights-discovery.json,
+  live probes of https://www.googleapis.com/pagespeedonline/v5/runPagespeed on 2026-08-13
+note: >-
+  Standards posture derived from the contract and from observed responses. Google
+  publishes no compliance certification scoped to pagespeedonline.googleapis.com — it is
+  not a Google Cloud committed/covered service — so no Compliance or TrustCenter pointer
+  is wired from this file.
+standards:
+  - id: google-api-discovery-v1
+    conforms: true
+    evidence: >-
+      Machine-readable Discovery document served at
+      https://pagespeedonline.googleapis.com/$discovery/rest?version=v5, kind
+      discovery#restDescription, revision 20260811, listed as preferred in the public
+      Google API directory.
+  - id: openapi-3.1
+    conforms: true
+    evidence: openapi/google-pagespeed-analysis-api-openapi.yml (API Evangelist refined, not provider-published)
+    provider_published: false
+  - id: oauth2
+    conforms: partial
+    evidence: >-
+      Discovery declares an auth.oauth2 block with the single scope `openid`; the
+      documented and recommended path is an API key on the `key` query parameter.
+  - id: oidc
+    conforms: partial
+    evidence: The only declared scope is the OIDC `openid` identity scope. No
+      openid-configuration document is served on any API host (all 404).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use the Google API (google.rpc) envelope as application/json, not
+      application/problem+json. Observed live on 400 and 429.
+  - id: google-rpc-error-model
+    conforms: true
+    evidence: >-
+      Observed error bodies carry error.status (INVALID_ARGUMENT, RESOURCE_EXHAUSTED) and
+      typed details of type.googleapis.com/google.rpc.ErrorInfo, google.rpc.Help and
+      google.rpc.LocalizedMessage.
+  - id: rfc9116-security-txt
+    conforms: partial
+    evidence: >-
+      Served at https://www.google.com/.well-known/security.txt (parent registrable
+      domain), not on any PageSpeed API host.
+  - id: rfc8615-well-known
+    conforms: false
+    evidence: Every /.well-known/ path 404s on all four API and portal hosts.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation header observed on live responses.
+  - id: ietf-ratelimit-headers
+    conforms: false
+    evidence: No RateLimit-*, X-RateLimit-* or Retry-After header on success or on 429.
+  - id: rfc9457-pagination
+    conforms: not-applicable
+    evidence: Single-result read API; no collection endpoints exist.
+  - id: idempotency-key
+    conforms: not-applicable
+    evidence: Read-only GET surface; no write operations to make idempotent.
+  - id: asyncapi
+    conforms: not-applicable
+    evidence: No event, webhook or streaming surface exists.
+  - id: mcp
+    conforms: false
+    evidence: No first-party MCP server; see mcp/google-pagespeed-mcp.yml.
+  - id: a2a
+    conforms: false
+    evidence: /.well-known/agent-card.json and /.well-known/agent.json 404 on all four hosts.
+  - id: tls-1.3
+    conforms: true
+    evidence: security/google-pagespeed-domain-security.yml — TLSv1.3 on all probed hosts.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

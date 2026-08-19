@@ -1,0 +1,403 @@
+{
+  "item": [
+    {
+      "id": "8266f25d-c0f1-4982-8636-0910ebe32deb",
+      "name": "Analysis",
+      "description": {
+        "content": "Page performance analysis",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a7cecc0-ca4a-416f-b023-2ec793dacc38",
+          "name": "Google PageSpeed Analyze page performance",
+          "request": {
+            "name": "Google PageSpeed Analyze page performance",
+            "description": {
+              "content": "Runs PageSpeed analysis on the given URL. Returns Lighthouse audit results including performance score, Core Web Vitals, and optimization recommendations for both mobile and desktop strategies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "runPagespeed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL to analyze"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategy",
+                  "value": "MOBILE",
+                  "description": "The analysis strategy (desktop or mobile)"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Lighthouse categories to run"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Lighthouse categories to run"
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "The locale for results (e.g. en_US)"
+                },
+                {
+                  "disabled": false,
+                  "key": "utm_campaign",
+                  "value": "<string>",
+                  "description": "Campaign name for analytics"
+                },
+                {
+                  "disabled": false,
+                  "key": "utm_source",
+                  "value": "<string>",
+                  "description": "Campaign source for analytics"
+                },
+                {
+                  "disabled": false,
+                  "key": "captchaToken",
+                  "value": "<string>",
+                  "description": "The captcha token for the request"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "354ef9c4-f105-4418-a68a-99bc66f577f7",
+              "name": "PageSpeed analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"captchaResult\": \"string\",\n  \"kind\": \"pagespeedonline#result\",\n  \"id\": \"string\",\n  \"loadingExperience\": {\n    \"id\": \"string\",\n    \"metrics\": {\n      \"LARGEST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": 880,\n        \"distributions\": [\n          {\n            \"min\": 6626,\n            \"max\": 8222,\n            \"proportion\": 4748.206997014316\n          },\n          {\n            \"min\": 7139,\n            \"max\": 8136,\n            \"proportion\": 4623.448532965175\n          }\n        ],\n        \"category\": \"FAST\"\n      },\n      \"FIRST_INPUT_DELAY_MS\": {\n        \"percentile\": 8177,\n        \"distributions\": [\n          {\n            \"min\": 6362,\n            \"max\": 9477,\n            \"proportion\": 3209.3090323542438\n          },\n          {\n            \"min\": 5897,\n            \"max\": 4109,\n            \"proportion\": 4189.8292589016055\n          }\n        ],\n        \"category\": \"SLOW\"\n      },\n      \"CUMULATIVE_LAYOUT_SHIFT_SCORE\": {\n        \"percentile\": 1491,\n        \"distributions\": [\n          {\n            \"min\": 1198,\n            \"max\": 9022,\n            \"proportion\": 54.858679301234005\n          },\n          {\n            \"min\": 2458,\n            \"max\": 9684,\n            \"proportion\": 2504.0840409570465\n          }\n        ],\n        \"category\": \"SLOW\"\n      },\n      \"INTERACTION_TO_NEXT_PAINT\": {\n        \"percentile\": 2083,\n        \"distributions\": [\n          {\n            \"min\": 2845,\n            \"max\": 1455,\n            \"proportion\": 3084.8094592431976\n          },\n          {\n            \"min\": 867,\n            \"max\": 8721,\n            \"proportion\": 2022.4672276122246\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      },\n      \"FIRST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": 3406,\n        \"distributions\": [\n          {\n            \"min\": 2095,\n            \"max\": 8817,\n            \"proportion\": 4062.4871887949066\n          },\n          {\n            \"min\": 5023,\n            \"max\": 794,\n            \"proportion\": 9955.452452247242\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      },\n      \"EXPERIMENTAL_TIME_TO_FIRST_BYTE\": {\n        \"percentile\": 6510,\n        \"distributions\": [\n          {\n            \"min\": 860,\n            \"max\": 8254,\n            \"proportion\": 3598.6698015139964\n          },\n          {\n            \"min\": 8134,\n            \"max\": 3517,\n            \"proportion\": 3703.57404669988\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      }\n    },\n    \"overall_category\": \"FAST\",\n    \"initial_url\": \"string\"\n  },\n  \"originLoadingExperience\": {\n    \"id\": \"string\",\n    \"metrics\": {\n      \"LARGEST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": 9033,\n        \"distributions\": [\n          {\n            \"min\": 6535,\n            \"max\": 1462,\n            \"proportion\": 4763.262552205777\n          },\n          {\n            \"min\": 7865,\n            \"max\": 6603,\n            \"proportion\": 4620.837640047492\n          }\n        ],\n        \"category\": \"SLOW\"\n      },\n      \"FIRST_INPUT_DELAY_MS\": {\n        \"percentile\": 9045,\n        \"distributions\": [\n          {\n            \"min\": 6567,\n            \"max\": 9495,\n            \"proportion\": 6137.609490763533\n          },\n          {\n            \"min\": 4989,\n            \"max\": 5469,\n            \"proportion\": 9957.015539865906\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      },\n      \"CUMULATIVE_LAYOUT_SHIFT_SCORE\": {\n        \"percentile\": 6975,\n        \"distributions\": [\n          {\n            \"min\": 8758,\n            \"max\": 5326,\n            \"proportion\": 4761.236257766837\n          },\n          {\n            \"min\": 2238,\n            \"max\": 4818,\n            \"proportion\": 6204.538999936524\n          }\n        ],\n        \"category\": \"FAST\"\n      },\n      \"INTERACTION_TO_NEXT_PAINT\": {\n        \"percentile\": 7624,\n        \"distributions\": [\n          {\n            \"min\": 4793,\n            \"max\": 3434,\n            \"proportion\": 1625.3633101611665\n          },\n          {\n            \"min\": 4604,\n            \"max\": 9821,\n            \"proportion\": 8724.915793090486\n          }\n        ],\n        \"category\": \"FAST\"\n      },\n      \"FIRST_CONTENTFUL_PAINT_MS\": {\n        \"percentile\": 9215,\n        \"distributions\": [\n          {\n            \"min\": 8747,\n            \"max\": 0,\n            \"proportion\": 3609.7348867067335\n          },\n          {\n            \"min\": 4098,\n            \"max\": 7565,\n            \"proportion\": 472.9475437222186\n          }\n        ],\n        \"category\": \"FAST\"\n      },\n      \"EXPERIMENTAL_TIME_TO_FIRST_BYTE\": {\n        \"percentile\": 5531,\n        \"distributions\": [\n          {\n            \"min\": 8126,\n            \"max\": 1637,\n            \"proportion\": 782.7096608170458\n          },\n          {\n            \"min\": 4816,\n            \"max\": 2623,\n            \"proportion\": 1085.7045678829968\n          }\n        ],\n        \"category\": \"AVERAGE\"\n      }\n    },\n    \"overall_category\": \"AVERAGE\",\n    \"initial_url\": \"string\"\n  },\n  \"lighthouseResult\": {\n    \"requestedUrl\": \"string\",\n    \"finalUrl\": \"string\",\n    \"lighthouseVersion\": \"string\",\n    \"fetchTime\": \"2008-01-17T14:11:04.333Z\",\n    \"userAgent\": \"string\",\n    \"environment\": {\n      \"networkUserAgent\": \"string\",\n      \"hostUserAgent\": \"string\",\n      \"benchmarkIndex\": 3930.6500284595027\n    },\n    \"categories\": {\n      \"performance\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"score\": 0.48463781983742804,\n        \"description\": \"string\",\n        \"auditRefs\": [\n          {\n            \"id\": \"string\",\n            \"weight\": 2044.4190609644131,\n            \"group\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"weight\": 4599.153290141354,\n            \"group\": \"string\"\n          }\n        ]\n      },\n      \"accessibility\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"score\": 0.7248493777547792,\n        \"description\": \"string\",\n        \"auditRefs\": [\n          {\n            \"id\": \"string\",\n            \"weight\": 1444.8087880683668,\n            \"group\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"weight\": 1154.8727757599454,\n            \"group\": \"string\"\n          }\n        ]\n      },\n      \"best-practices\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"score\": 0.90143544279491,\n        \"description\": \"string\",\n        \"auditRefs\": [\n          {\n            \"id\": \"string\",\n            \"weight\": 8392.399997810367,\n            \"group\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"weight\": 4780.530207046861,\n            \"group\": \"string\"\n          }\n        ]\n      },\n      \"seo\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"score\": 0.4095581876661344,\n        \"description\": \"string\",\n        \"auditRefs\": [\n          {\n            \"id\": \"string\",\n            \"weight\": 5943.1158692929275,\n            \"group\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"weight\": 24.01692474329753,\n            \"group\": \"string\"\n          }\n        ]\n      }\n    },\n    \"audits\": {\n      \"key_0\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"score\": 1912.8838627572675,\n        \"scoreDisplayMode\": \"informative\",\n        \"displayValue\": \"string\",\n        \"numericValue\": 4325.231452707024,\n        \"numericUnit\": \"string\"\n      },\n      \"key_1\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"score\": 8715.926968243237,\n        \"scoreDisplayMode\": \"binary\",\n        \"displayValue\": \"string\",\n        \"numericValue\": 2972.29683884497,\n        \"numericUnit\": \"string\"\n      }\n    }\n  },\n  \"analysisUTCTimestamp\": \"1970-08-10T18:30:17.921Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3ed6090-111c-4ef8-a9b5-5382760ebb37",
+              "name": "Invalid URL or parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26fe8511-54a6-4759-bf3a-3f41f453618d",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80e71a0a-49cf-426d-8464-cb880b3d746d",
+              "name": "Internal error during analysis",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runPagespeed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "MOBILE"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utm_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "captchaToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.googleapis.com/pagespeedonline/v5",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "493d3969-d387-4aaa-a806-858a0713c456",
+    "name": "Google PageSpeed PageSpeed Insights Analysis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PageSpeed Insights API runs Lighthouse audits on web pages and returns performance scores, Core Web Vitals metrics, Chrome User Experience Report field data, and detailed optimization opportunities and diagnostics.\n\nContact Support:\n Name: Google Developers",
+      "type": "text/plain"
+    }
+  }
+}

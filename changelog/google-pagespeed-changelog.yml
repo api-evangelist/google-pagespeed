@@ -1,0 +1,59 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/speed/docs/insights/release_notes
+url: https://developers.google.com/speed/docs/insights/release_notes
+page_last_updated: '2025-10-27'
+scheme: dated-narrative
+current_version: v5
+note: >-
+  Google's PageSpeed Insights release notes are a narrative page, not a per-release
+  dated log. The most recent explicitly dated entry on the page is January 31, 2019;
+  everything after that is summarised without dates (Lighthouse major-version bumps,
+  the INP transition, new categories and field metrics, the 120-second timeout raise,
+  HTTP/2 support). The page itself carries a "Last updated 2025-10-27" stamp. Entries
+  below are recorded exactly as published — undated items carry date: null rather than
+  an invented date.
+entries:
+  - version: null
+    date: null
+    breaking: true
+    highlights:
+      - Lighthouse updated to 10.0, 11.0 and 12.0 — each introducing API breaking changes.
+      - INP became a pending Core Web Vital, replacing EXPERIMENTAL_INTERACTION_TO_NEXT_PAINT.
+      - New categories introduced — Accessibility, Best Practices, SEO.
+      - New field metrics introduced — INP and TTFB.
+      - Maximum timeout for API requests raised to 120 seconds.
+      - HTTP/2 support added.
+      - CPU throttling changed to improve mobile lab TBT scores.
+      - Shareable link feature added to the UI.
+    note: >-
+      Published as an undated summary block on the release-notes page. Ordering within
+      the block is Google's, not inferred.
+  - version: Lighthouse 4.1
+    date: '2019-01-31'
+    breaking: false
+    highlights:
+      - Lighthouse, which powers PageSpeed Insights, released v4.1.
+  - version: v5
+    date: '2018-11'
+    breaking: true
+    highlights:
+      - v5 of the PageSpeed Insights API released.
+      - Analysis engine switched to Lighthouse; Chrome User Experience Report field data added.
+      - All Lighthouse audits exposed through the API.
+      - Previous versions announced as deprecated within six months.
+  - version: v4
+    date: '2018-01'
+    breaking: true
+    highlights:
+      - Added a speed score based on the Chrome User Experience Report.
+      - Refined the original PSI score into an optimization score.
+  - version: v2
+    date: '2015-01'
+    breaking: true
+    highlights:
+      - Added support for rule groups such as SPEED and USABILITY.
+      - Result category added 2017-05-12; render engine switched from WebKit to Blink 2017-02-02.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

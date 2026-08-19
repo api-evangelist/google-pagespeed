@@ -1,0 +1,45 @@
+generated: '2026-08-13'
+method: derived
+status: candidate
+source: openapi/google-pagespeed-analysis-api-openapi.yml
+note: >-
+  Google publishes NO first-party MCP server for the PageSpeed Insights API. A search
+  of the docs, the Google/googleapis GitHub orgs and the public MCP registries returns
+  only third-party community wrappers around the same public REST endpoint (several
+  npm packages and Smithery listings, none Google-authored). Because no provider-shipped
+  server exists, this file records a DERIVED candidate tool surface only and no
+  MCPServer pointer is wired into apis.yml — a candidate is not an agent surface the
+  provider ships.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: searched
+server:
+  name: google-pagespeed
+  transport: null
+  url: null
+tools:
+  - name: run_pagespeed
+    description: >-
+      Run a Lighthouse audit on a URL and return performance, accessibility, best
+      practices and SEO scores plus Chrome User Experience Report field data.
+    source_operation: openapi/google-pagespeed-analysis-api-openapi.yml#runPagespeed
+    inputs:
+      required: [url]
+      optional: [strategy, category, locale, utm_campaign, utm_source, captchaToken]
+    note: >-
+      inputSchema is inherited verbatim from the runPagespeed operation's query
+      parameters; nothing here is invented.
+third_party_servers:
+  observed: true
+  first_party: false
+  note: >-
+    Community MCP servers wrapping this API exist on npm and the public MCP
+    directories. They are not catalogued here because they are not published by Google
+    and carry no provider warranty.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

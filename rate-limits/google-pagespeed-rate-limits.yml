@@ -4,7 +4,14 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Google PageSpeed
 providerId: google-pagespeed
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live unauthenticated GET of
+  https://www.googleapis.com/pagespeedonline/v5/runPagespeed on 2026-08-13, plus a docs
+  sweep of developers.google.com/speed/docs/insights
+limit_count: 0
 tags:
   - Core Web Vitals
   - Google
@@ -14,77 +21,81 @@ tags:
   - Web Performance
   - Rate Limiting
   - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Google PageSpeed API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+description: >-
+  Google publishes NO numeric rate limit or quota for the PageSpeed Insights API on any
+  public documentation page. limit_count is 0 for that reason. What the API does expose
+  is the quota machinery itself, in the 429 body — the metric name, the limit name and
+  the unit — which was captured live and is recorded below. The numeric value of
+  defaultPerDayPerProject is only visible on the Cloud Console quotas page for
+  pagespeedonline.googleapis.com, which requires a signed-in Google account. Widely
+  repeated third-party figures (25,000 queries/day, 240 queries/minute) are NOT recorded
+  here because Google does not publish them.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+  observed: []
+  finding: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header is returned, on a successful
+    response or on a 429. Response headers observed live were vary, content-type,
+    server (ESF) and alt-svc only. An agent gets zero runtime budget signal and must back
+    off blind.
 responseCodes:
   throttled: 429
   quotaExceeded: 429
   serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - PageSpeed Insights API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - PageSpeed Insights API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - PageSpeed Insights API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - PageSpeed Insights API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - PageSpeed Insights API
+error_signature:
+  status: 429
+  google_status: RESOURCE_EXHAUSTED
+  reason: RATE_LIMIT_EXCEEDED
+  legacy_reason: rateLimitExceeded
+  message_observed: >-
+    Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service
+    'pagespeedonline.googleapis.com' for consumer 'project_number:...'
+  help_link: https://cloud.google.com/docs/quotas/help/request_increase
+  see: errors/google-pagespeed-problem-types.yml
+limits: []
+quota_surface:
+  - name: defaultPerDayPerProject
+    metric: pagespeedonline.googleapis.com/default
+    display_metric: Queries
+    display_limit: Queries per day
+    unit: 1/d/{project}
+    location: global
+    scope: per-project
+    value: null
+    value_source: https://console.cloud.google.com/apis/api/pagespeedonline.googleapis.com/quotas
+    value_note: >-
+      Numeric value not published publicly; the Cloud Console quotas page is
+      authentication-gated. Recorded as null rather than guessed.
+    evidence: live 429 body, 2026-08-13
+anonymous_access:
+  keyless_quota_value_observed: '0'
+  finding: >-
+    An unkeyed request is charged against a shared anonymous pool whose observed
+    quota_limit_value was "0" — every unkeyed call 429s immediately. The documentation
+    calls the API key optional; in practice it is required.
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: >-
+      Exponential backoff with jitter is the only viable strategy, because no Retry-After
+      or reset header is returned to time the retry against.
+  - name: Quota Attribution
+    description: >-
+      The `quotaUser` system parameter lets a caller attribute quota to an opaque
+      end-user string when no Google user id is available, so one shared key can be
+      apportioned across callers.
+  - name: Quota Increase
+    description: >-
+      Increases are requested through Cloud Console quotas, per the google.rpc.Help link
+      returned in the 429 body.
+supersedes:
+  note: >-
+    This file replaces a 2026-05-04 bulk-sweep scaffold that invented free/professional/
+    enterprise tiers, per-minute limits and burst ceilings, and asserted X-RateLimit-*
+    headers this API does not send. See roadmap#35.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,71 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.google.com/speed/docs/insights/release_notes
+versioning:
+  scheme: uri-path
+  current: v5
+  released: '2018-11'
+  docs: https://developers.google.com/speed/docs/insights/release_notes
+  discovery_revision: '20260811'
+  note: >-
+    The path version (v5) has been stable since November 2018. The contract underneath it
+    moves by Discovery revision — the live document was revision 20260811 when probed on
+    2026-08-13 — and by Lighthouse engine version, which is where the real breaking
+    changes land (Lighthouse 10.0, 11.0 and 12.0 are each recorded in the release notes
+    as introducing API breaking changes).
+history:
+  - version: v5
+    released: '2018-11'
+    status: current
+    note: Switched the analysis engine to Lighthouse and added Chrome UX Report field data.
+  - version: v4
+    released: '2018-01'
+    status: deprecated
+  - version: v2
+    released: '2015-01'
+    status: closed
+    note: "Release notes state: Deprecated. Will close on Jun 2018."
+  - version: v1
+    status: closed
+deprecation:
+  policy_url: https://developers.google.com/speed/docs/insights/release_notes
+  formal_policy: false
+  sunset_header: false
+  deprecation_header: false
+  practice: >-
+    Google publishes deprecation notices per change in the PageSpeed Insights release
+    notes rather than maintaining a formal, dated deprecation policy for this API. The
+    Google APIs Terms of Service has no deprecation clause (checked 2026-08-13); Section
+    8.a reserves the right to discontinue an API at any time.
+  stated_notice_window: >-
+    "Previous versions of the PSI API will be deprecated in six months" — release notes,
+    November 2018 v5 announcement. This is the only notice window Google states for this API.
+  pending:
+    - subject: Chrome User Experience Report field data
+      fields: [loadingExperience, originLoadingExperience]
+      statement: >-
+        "We plan to discontinue including real-world data from the Chrome User Experience
+        Report in this API. We recommend the CrUX API (guide) or the CrUX History API
+        (guide) instead."
+      source: https://developers.google.com/speed/docs/insights/v5/get-started
+      date_announced: null
+      sunset_date: null
+      migration_target: https://developer.chrome.com/docs/crux/api
+      note: >-
+        No date is attached to the notice. This is the single largest forward risk on the
+        contract: it removes two top-level response objects with no announced sunset date.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No SLA is published for the PageSpeed Insights API. It is not a Google Cloud
+    committed-SLA service.
+status_page: https://status.cloud.google.com/
+status_page_note: >-
+  Google Cloud's status dashboard is the closest published status surface; there is no
+  PageSpeed-Insights-specific status page and pagespeedonline is not an individually
+  listed product on the dashboard.
+deprecated_operations: []
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

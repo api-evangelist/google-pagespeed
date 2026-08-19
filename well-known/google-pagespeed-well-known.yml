@@ -1,0 +1,67 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every apis.yml and OpenAPI servers[] host
+note: >-
+  No PageSpeed API host serves any /.well-known/ discovery document — every path
+  returned 404 on pagespeed.web.dev, developers.google.com, www.googleapis.com and
+  pagespeedonline.googleapis.com. The only real document found sits on google.com,
+  the parent registrable domain of developers.google.com: an RFC 9116 security.txt
+  covering Google properties generally. It is recorded and saved here because it is a
+  genuine 200 carrying a real document, but it is NOT served by an API host, and no
+  api-catalog, OIDC, OAuth AS or ai-plugin document exists anywhere on this surface.
+hosts:
+  - host: https://pagespeed.web.dev
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://developers.google.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://www.googleapis.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://pagespeedonline.googleapis.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://www.google.com
+    relationship: parent registrable domain of developers.google.com; not an API host
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: google-pagespeed-security.txt
+summary:
+  api_host_documents_found: 0
+  documents_found: 1
+  api_catalog: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  ai_plugin: false
+  agent_card: false
+  security_txt: true
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,25 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Generated from openapi/google-pagespeed-analysis-api-openapi.yml (the single operationId
+  runPagespeed, verified verbatim in the spec) plus the conventions/, errors/, rate-limits/
+  and lifecycle/ artifacts in this repo. Google publishes no AGENTS.md or provider-authored
+  skill files (searched 2026-08-13).
+skills:
+  - file: google-pagespeed-audit-page-performance.md
+    name: Audit a page with PageSpeed Insights
+    description: >-
+      Run a Lighthouse audit on a single URL and read the result correctly, including the
+      soft failures that arrive inside an HTTP 200.
+    api: openapi/google-pagespeed-analysis-api-openapi.yml
+    operations: [runPagespeed]
+  - file: google-pagespeed-track-core-web-vitals.md
+    name: Track Core Web Vitals across a set of pages
+    description: >-
+      Fan out runPagespeed across many URLs and both form factors within an undocumented
+      quota and with no rate-limit response headers to steer by.
+    api: openapi/google-pagespeed-analysis-api-openapi.yml
+    operations: [runPagespeed]
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

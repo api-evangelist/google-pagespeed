@@ -1,15 +1,58 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/pagespeed-insights-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: openapi/google-pagespeed-analysis-api-openapi.yml
+docs: https://developers.google.com/speed/docs/insights/v5/get-started#APIKey
+discovery: https://pagespeedonline.googleapis.com/$discovery/rest?version=v5
 summary:
   types:
   - apiKey
+  - oauth2
   api_key_in:
   - query
+  oauth2_flows: []
+  primary: apiKey
 schemes:
 - name: apiKey
   type: apiKey
   in: query
   parameter: key
+  required: recommended
   sources:
-  - openapi/pagespeed-insights-openapi.yml
+  - openapi/google-pagespeed-analysis-api-openapi.yml
+  - https://developers.google.com/speed/docs/insights/v5/get-started#APIKey
+  docs_statement: >-
+    "The API can be used with or without an API key, although a key is recommended for
+    frequent, automated queries." ... "After you have an API key, your application can
+    append the query parameter key=yourAPIKey to all request URLs. The API key is safe
+    for embedding in URLs; it doesn't need any encoding."
+  probed_reality: >-
+    Documented as optional, effectively mandatory. An unkeyed GET to
+    https://www.googleapis.com/pagespeedonline/v5/runPagespeed on 2026-08-13 returned
+    HTTP 429 RESOURCE_EXHAUSTED with quota_limit_value "0" — the shared anonymous pool is
+    exhausted. Agents must treat the key as required.
+  key_issuance: https://console.cloud.google.com/apis/credentials
+  key_restrictions: >-
+    Cloud Console API keys can be restricted by referrer/IP and by API; a key restricted
+    away from pagespeedonline.googleapis.com returns 400 API_KEY_INVALID.
+- name: oauth2
+  type: oauth2
+  scheme: bearer
+  in: header
+  parameter: Authorization
+  alternative_parameter: access_token (query)
+  scopes: [openid]
+  sources:
+  - https://pagespeedonline.googleapis.com/$discovery/rest?version=v5
+  note: >-
+    Declared in Google's Discovery document with the single identity scope `openid`. It
+    is not the documented path for this API and grants no additional data access; see
+    scopes/google-pagespeed-scopes.yml.
+transport_security:
+  https_required: true
+  tls_version_observed: TLSv1.3
+failure_modes:
+  - {status: 400, reason: API_KEY_INVALID, meaning: key missing from the project, malformed, or restricted}
+  - {status: 429, reason: RATE_LIMIT_EXCEEDED, meaning: project or anonymous quota exhausted}
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
