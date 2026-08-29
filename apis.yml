@@ -4,6 +4,18 @@ description: >-
   Google PageSpeed Insights provides APIs for analyzing the performance of web pages on both mobile and desktop devices,
   returning performance scores, Core Web Vitals metrics, and actionable optimization recommendations powered by
   Lighthouse.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
