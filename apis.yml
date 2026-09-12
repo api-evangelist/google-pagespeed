@@ -66,6 +66,8 @@ apis:
   - type: JSONSchema
     url: json-schema/google-pagespeed-result-schema.json
 common:
+  - type: Website
+    url: https://www.google.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/google-pagespeed/overview
   - type: AgenticAccess
@@ -148,3 +150,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 19
   pass: local-v1
+x-parent: google
+x-relationship: product

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Google PageSpeed PageSpeed Insights Analysis API
   description: The PageSpeed Insights API runs Lighthouse audits on web pages and returns performance scores, Core Web Vitals metrics, Chrome User Experience Report field data, and detailed optimization opportunities and diagnostics.
@@ -89,6 +89,52 @@ paths:
           description: Internal error during analysis
 components:
   schemas:
+    Audit:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        score:
+          type: number
+        scoreDisplayMode:
+          type: string
+          enum:
+          - binary
+          - numeric
+          - informative
+          - manual
+          - notApplicable
+          - error
+        displayValue:
+          type: string
+        numericValue:
+          type: number
+        numericUnit:
+          type: string
+    PagespeedResult:
+      type: object
+      properties:
+        captchaResult:
+          type: string
+        kind:
+          type: string
+          default: pagespeedonline#result
+        id:
+          type: string
+          description: The URL that was analyzed
+        loadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        originLoadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        lighthouseResult:
+          $ref: '#/components/schemas/LighthouseResult'
+        analysisUTCTimestamp:
+          type: string
+          format: date-time
     LoadingExperience:
       type: object
       description: Chrome User Experience Report field data
@@ -119,74 +165,6 @@ components:
           - NONE
         initial_url:
           type: string
-    Audit:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        score:
-          type: number
-        scoreDisplayMode:
-          type: string
-          enum:
-          - binary
-          - numeric
-          - informative
-          - manual
-          - notApplicable
-          - error
-        displayValue:
-          type: string
-        numericValue:
-          type: number
-        numericUnit:
-          type: string
-    MetricDistribution:
-      type: object
-      properties:
-        percentile:
-          type: integer
-        distributions:
-          type: array
-          items:
-            type: object
-            properties:
-              min:
-                type: integer
-              max:
-                type: integer
-              proportion:
-                type: number
-        category:
-          type: string
-          enum:
-          - FAST
-          - AVERAGE
-          - SLOW
-    PagespeedResult:
-      type: object
-      properties:
-        captchaResult:
-          type: string
-        kind:
-          type: string
-          default: pagespeedonline#result
-        id:
-          type: string
-          description: The URL that was analyzed
-        loadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        originLoadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        lighthouseResult:
-          $ref: '#/components/schemas/LighthouseResult'
-        analysisUTCTimestamp:
-          type: string
-          format: date-time
     LighthouseResult:
       type: object
       properties:
@@ -225,6 +203,28 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Audit'
+    MetricDistribution:
+      type: object
+      properties:
+        percentile:
+          type: integer
+        distributions:
+          type: array
+          items:
+            type: object
+            properties:
+              min:
+                type: integer
+              max:
+                type: integer
+              proportion:
+                type: number
+        category:
+          type: string
+          enum:
+          - FAST
+          - AVERAGE
+          - SLOW
     Category:
       type: object
       properties:
