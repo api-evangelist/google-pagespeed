@@ -89,120 +89,6 @@ paths:
           description: Internal error during analysis
 components:
   schemas:
-    Audit:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        score:
-          type: number
-        scoreDisplayMode:
-          type: string
-          enum:
-          - binary
-          - numeric
-          - informative
-          - manual
-          - notApplicable
-          - error
-        displayValue:
-          type: string
-        numericValue:
-          type: number
-        numericUnit:
-          type: string
-    PagespeedResult:
-      type: object
-      properties:
-        captchaResult:
-          type: string
-        kind:
-          type: string
-          default: pagespeedonline#result
-        id:
-          type: string
-          description: The URL that was analyzed
-        loadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        originLoadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        lighthouseResult:
-          $ref: '#/components/schemas/LighthouseResult'
-        analysisUTCTimestamp:
-          type: string
-          format: date-time
-    LoadingExperience:
-      type: object
-      description: Chrome User Experience Report field data
-      properties:
-        id:
-          type: string
-        metrics:
-          type: object
-          properties:
-            LARGEST_CONTENTFUL_PAINT_MS:
-              $ref: '#/components/schemas/MetricDistribution'
-            FIRST_INPUT_DELAY_MS:
-              $ref: '#/components/schemas/MetricDistribution'
-            CUMULATIVE_LAYOUT_SHIFT_SCORE:
-              $ref: '#/components/schemas/MetricDistribution'
-            INTERACTION_TO_NEXT_PAINT:
-              $ref: '#/components/schemas/MetricDistribution'
-            FIRST_CONTENTFUL_PAINT_MS:
-              $ref: '#/components/schemas/MetricDistribution'
-            EXPERIMENTAL_TIME_TO_FIRST_BYTE:
-              $ref: '#/components/schemas/MetricDistribution'
-        overall_category:
-          type: string
-          enum:
-          - FAST
-          - AVERAGE
-          - SLOW
-          - NONE
-        initial_url:
-          type: string
-    LighthouseResult:
-      type: object
-      properties:
-        requestedUrl:
-          type: string
-        finalUrl:
-          type: string
-        lighthouseVersion:
-          type: string
-        fetchTime:
-          type: string
-          format: date-time
-        userAgent:
-          type: string
-        environment:
-          type: object
-          properties:
-            networkUserAgent:
-              type: string
-            hostUserAgent:
-              type: string
-            benchmarkIndex:
-              type: number
-        categories:
-          type: object
-          properties:
-            performance:
-              $ref: '#/components/schemas/Category'
-            accessibility:
-              $ref: '#/components/schemas/Category'
-            best-practices:
-              $ref: '#/components/schemas/Category'
-            seo:
-              $ref: '#/components/schemas/Category'
-        audits:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Audit'
     MetricDistribution:
       type: object
       properties:
@@ -249,6 +135,120 @@ components:
                 type: number
               group:
                 type: string
+    LoadingExperience:
+      type: object
+      description: Chrome User Experience Report field data
+      properties:
+        id:
+          type: string
+        metrics:
+          type: object
+          properties:
+            LARGEST_CONTENTFUL_PAINT_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            FIRST_INPUT_DELAY_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            CUMULATIVE_LAYOUT_SHIFT_SCORE:
+              $ref: '#/components/schemas/MetricDistribution'
+            INTERACTION_TO_NEXT_PAINT:
+              $ref: '#/components/schemas/MetricDistribution'
+            FIRST_CONTENTFUL_PAINT_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            EXPERIMENTAL_TIME_TO_FIRST_BYTE:
+              $ref: '#/components/schemas/MetricDistribution'
+        overall_category:
+          type: string
+          enum:
+          - FAST
+          - AVERAGE
+          - SLOW
+          - NONE
+        initial_url:
+          type: string
+    Audit:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        score:
+          type: number
+        scoreDisplayMode:
+          type: string
+          enum:
+          - binary
+          - numeric
+          - informative
+          - manual
+          - notApplicable
+          - error
+        displayValue:
+          type: string
+        numericValue:
+          type: number
+        numericUnit:
+          type: string
+    PagespeedResult:
+      type: object
+      properties:
+        captchaResult:
+          type: string
+        kind:
+          type: string
+          default: pagespeedonline#result
+        id:
+          type: string
+          description: The URL that was analyzed
+        loadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        originLoadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        lighthouseResult:
+          $ref: '#/components/schemas/LighthouseResult'
+        analysisUTCTimestamp:
+          type: string
+          format: date-time
+    LighthouseResult:
+      type: object
+      properties:
+        requestedUrl:
+          type: string
+        finalUrl:
+          type: string
+        lighthouseVersion:
+          type: string
+        fetchTime:
+          type: string
+          format: date-time
+        userAgent:
+          type: string
+        environment:
+          type: object
+          properties:
+            networkUserAgent:
+              type: string
+            hostUserAgent:
+              type: string
+            benchmarkIndex:
+              type: number
+        categories:
+          type: object
+          properties:
+            performance:
+              $ref: '#/components/schemas/Category'
+            accessibility:
+              $ref: '#/components/schemas/Category'
+            best-practices:
+              $ref: '#/components/schemas/Category'
+            seo:
+              $ref: '#/components/schemas/Category'
+        audits:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Audit'
   securitySchemes:
     apiKey:
       type: apiKey
