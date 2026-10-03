@@ -127,52 +127,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Audit'
-    Category:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        score:
-          type: number
-          minimum: 0
-          maximum: 1
-        description:
-          type: string
-        auditRefs:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              weight:
-                type: number
-              group:
-                type: string
-    MetricDistribution:
-      type: object
-      properties:
-        percentile:
-          type: integer
-        distributions:
-          type: array
-          items:
-            type: object
-            properties:
-              min:
-                type: integer
-              max:
-                type: integer
-              proportion:
-                type: number
-        category:
-          type: string
-          enum:
-          - FAST
-          - AVERAGE
-          - SLOW
     PagespeedResult:
       type: object
       properties:
@@ -249,6 +203,52 @@ components:
           - NONE
         initial_url:
           type: string
+    MetricDistribution:
+      type: object
+      properties:
+        percentile:
+          type: integer
+        distributions:
+          type: array
+          items:
+            type: object
+            properties:
+              min:
+                type: integer
+              max:
+                type: integer
+              proportion:
+                type: number
+        category:
+          type: string
+          enum:
+          - FAST
+          - AVERAGE
+          - SLOW
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        description:
+          type: string
+        auditRefs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              weight:
+                type: number
+              group:
+                type: string
   securitySchemes:
     apiKey:
       type: apiKey
