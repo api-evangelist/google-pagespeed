@@ -89,6 +89,98 @@ paths:
           description: Internal error during analysis
 components:
   schemas:
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        description:
+          type: string
+        auditRefs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              weight:
+                type: number
+              group:
+                type: string
+    PagespeedResult:
+      type: object
+      properties:
+        captchaResult:
+          type: string
+        kind:
+          type: string
+          default: pagespeedonline#result
+        id:
+          type: string
+          description: The URL that was analyzed
+        loadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        originLoadingExperience:
+          $ref: '#/components/schemas/LoadingExperience'
+        lighthouseResult:
+          $ref: '#/components/schemas/LighthouseResult'
+        analysisUTCTimestamp:
+          type: string
+          format: date-time
+    MetricDistribution:
+      type: object
+      properties:
+        percentile:
+          type: integer
+        distributions:
+          type: array
+          items:
+            type: object
+            properties:
+              min:
+                type: integer
+              max:
+                type: integer
+              proportion:
+                type: number
+        category:
+          type: string
+          enum:
+          - FAST
+          - AVERAGE
+          - SLOW
+    Audit:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        score:
+          type: number
+        scoreDisplayMode:
+          type: string
+          enum:
+          - binary
+          - numeric
+          - informative
+          - manual
+          - notApplicable
+          - error
+        displayValue:
+          type: string
+        numericValue:
+          type: number
+        numericUnit:
+          type: string
     LighthouseResult:
       type: object
       properties:
@@ -127,52 +219,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Audit'
-    PagespeedResult:
-      type: object
-      properties:
-        captchaResult:
-          type: string
-        kind:
-          type: string
-          default: pagespeedonline#result
-        id:
-          type: string
-          description: The URL that was analyzed
-        loadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        originLoadingExperience:
-          $ref: '#/components/schemas/LoadingExperience'
-        lighthouseResult:
-          $ref: '#/components/schemas/LighthouseResult'
-        analysisUTCTimestamp:
-          type: string
-          format: date-time
-    Audit:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        score:
-          type: number
-        scoreDisplayMode:
-          type: string
-          enum:
-          - binary
-          - numeric
-          - informative
-          - manual
-          - notApplicable
-          - error
-        displayValue:
-          type: string
-        numericValue:
-          type: number
-        numericUnit:
-          type: string
     LoadingExperience:
       type: object
       description: Chrome User Experience Report field data
@@ -203,52 +249,6 @@ components:
           - NONE
         initial_url:
           type: string
-    MetricDistribution:
-      type: object
-      properties:
-        percentile:
-          type: integer
-        distributions:
-          type: array
-          items:
-            type: object
-            properties:
-              min:
-                type: integer
-              max:
-                type: integer
-              proportion:
-                type: number
-        category:
-          type: string
-          enum:
-          - FAST
-          - AVERAGE
-          - SLOW
-    Category:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        score:
-          type: number
-          minimum: 0
-          maximum: 1
-        description:
-          type: string
-        auditRefs:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              weight:
-                type: number
-              group:
-                type: string
   securitySchemes:
     apiKey:
       type: apiKey
