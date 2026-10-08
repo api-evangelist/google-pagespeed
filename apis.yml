@@ -66,6 +66,8 @@ apis:
   - type: JSONSchema
     url: json-schema/google-pagespeed-result-schema.json
 common:
+  - type: FinOps
+    url: finops/google-pagespeed-finops.yml
   - type: Website
     url: https://www.google.com/
   - type: PostmanWorkspace
