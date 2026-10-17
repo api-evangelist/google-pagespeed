@@ -89,30 +89,36 @@ paths:
           description: Internal error during analysis
 components:
   schemas:
-    Category:
+    LoadingExperience:
       type: object
+      description: Chrome User Experience Report field data
       properties:
         id:
           type: string
-        title:
+        metrics:
+          type: object
+          properties:
+            LARGEST_CONTENTFUL_PAINT_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            FIRST_INPUT_DELAY_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            CUMULATIVE_LAYOUT_SHIFT_SCORE:
+              $ref: '#/components/schemas/MetricDistribution'
+            INTERACTION_TO_NEXT_PAINT:
+              $ref: '#/components/schemas/MetricDistribution'
+            FIRST_CONTENTFUL_PAINT_MS:
+              $ref: '#/components/schemas/MetricDistribution'
+            EXPERIMENTAL_TIME_TO_FIRST_BYTE:
+              $ref: '#/components/schemas/MetricDistribution'
+        overall_category:
           type: string
-        score:
-          type: number
-          minimum: 0
-          maximum: 1
-        description:
+          enum:
+          - FAST
+          - AVERAGE
+          - SLOW
+          - NONE
+        initial_url:
           type: string
-        auditRefs:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              weight:
-                type: number
-              group:
-                type: string
     PagespeedResult:
       type: object
       properties:
@@ -155,32 +161,6 @@ components:
           - FAST
           - AVERAGE
           - SLOW
-    Audit:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        score:
-          type: number
-        scoreDisplayMode:
-          type: string
-          enum:
-          - binary
-          - numeric
-          - informative
-          - manual
-          - notApplicable
-          - error
-        displayValue:
-          type: string
-        numericValue:
-          type: number
-        numericUnit:
-          type: string
     LighthouseResult:
       type: object
       properties:
@@ -219,35 +199,55 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Audit'
-    LoadingExperience:
+    Category:
       type: object
-      description: Chrome User Experience Report field data
       properties:
         id:
           type: string
-        metrics:
-          type: object
-          properties:
-            LARGEST_CONTENTFUL_PAINT_MS:
-              $ref: '#/components/schemas/MetricDistribution'
-            FIRST_INPUT_DELAY_MS:
-              $ref: '#/components/schemas/MetricDistribution'
-            CUMULATIVE_LAYOUT_SHIFT_SCORE:
-              $ref: '#/components/schemas/MetricDistribution'
-            INTERACTION_TO_NEXT_PAINT:
-              $ref: '#/components/schemas/MetricDistribution'
-            FIRST_CONTENTFUL_PAINT_MS:
-              $ref: '#/components/schemas/MetricDistribution'
-            EXPERIMENTAL_TIME_TO_FIRST_BYTE:
-              $ref: '#/components/schemas/MetricDistribution'
-        overall_category:
+        title:
+          type: string
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        description:
+          type: string
+        auditRefs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              weight:
+                type: number
+              group:
+                type: string
+    Audit:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        score:
+          type: number
+        scoreDisplayMode:
           type: string
           enum:
-          - FAST
-          - AVERAGE
-          - SLOW
-          - NONE
-        initial_url:
+          - binary
+          - numeric
+          - informative
+          - manual
+          - notApplicable
+          - error
+        displayValue:
+          type: string
+        numericValue:
+          type: number
+        numericUnit:
           type: string
   securitySchemes:
     apiKey:
