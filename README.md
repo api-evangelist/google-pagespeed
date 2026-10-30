@@ -1,4 +1,4 @@
-# Google PageSpeed (google-pagespeed)
+# Google PageSpeed
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,67 +66,163 @@
 
 Google PageSpeed Insights provides APIs for analyzing the performance of web pages on both mobile and desktop devices, returning performance scores, Core Web Vitals metrics, and actionable optimization recommendations powered by Lighthouse.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/google-pagespeed/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/google-pagespeed/refs/heads/main/apis.yml)
+**Areas:** Core Web Vitals · Google · Lighthouse · Page Speed · SEO · Web Performance
 
-## Scope
+## Google PageSpeed on APIs.io
 
-- **Type:** Index
+Everything profiled for Google PageSpeed is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/google-pagespeed/](https://apis.io/providers/google-pagespeed/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (1)
 
-- Core Web Vitals
-- Google
-- Lighthouse
-- Page Speed
-- SEO
-- Web Performance
+- [Google PageSpeed Analysis API](https://apis.io/apis/google-pagespeed/google-pagespeed-analysis-api/) — Page performance analysis
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-13
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### PageSpeed Insights API
+Model Context Protocol servers that expose the API to agents.
 
-The PageSpeed Insights API analyzes the content of a web page and generates suggestions to make it faster. It runs Lighthouse audits on the given URL and returns performance scores, Core Web Vitals metrics (Largest Contentful Paint, First Input Delay, Cumulative Layout Shift), field data from the Chrome User Experience Report, and detailed lab data with optimization opportunities and diagnostics.
+- [google-pagespeed](https://apis.io/servers/google-pagespeed/google-pagespeed/)
 
-- **Human URL:** [https://developers.google.com/speed/docs/insights/v5/get-started](https://developers.google.com/speed/docs/insights/v5/get-started)
-- **Base URL:** `https://www.googleapis.com/pagespeedonline/v5`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Audits
-- Core Web Vitals
-- Lighthouse
-- Performance
+- [Google Pagespeed Agentic Access](https://apis.io/agentic-access/google-pagespeed/google-pagespeed-agentic-access/)
 
-#### Properties
+#### JSON Schema (1)
 
-- [Documentation](https://developers.google.com/speed/docs/insights/v5/reference)
-- [OpenAPI](openapi/pagespeed-insights-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pagespeed-insights.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pagespeed-insights.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://developers.google.com/speed/docs/insights/v5/get-started#APIKey)
-- [Getting Started](https://developers.google.com/speed/docs/insights/v5/get-started)
-- [JSON Schema](json-schema/google-pagespeed-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
+The data models the API reads and writes.
 
-## Common Properties
+- [PageSpeed Insights Result](https://apis.io/schemas/google-pagespeed/google-pagespeed-result/)
 
-- [GitHub Organization](https://github.com/pagespeed)
-- [Portal](https://pagespeed.web.dev/)
-- [Getting Started](https://developers.google.com/speed/docs/insights/v5/get-started)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Google Pagespeed Context](https://apis.io/jsonld/google-pagespeed/google-pagespeed-context/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Google PageSpeed PageSpeed Insights Analysis API](https://apis.io/collections/google-pagespeed/open-google-pagespeed-analysis-api/)
+- [Google PageSpeed PageSpeed Insights API](https://apis.io/collections/google-pagespeed/open-pagespeed-insights/)
+- [Google PageSpeed PageSpeed Insights Analysis API](https://apis.io/collections/google-pagespeed/postman-google-pagespeed-analysis-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Google Pagespeed Analysis Api Overlay](https://apis.io/overlays/google-pagespeed/google-pagespeed-analysis-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Google PageSpeed — jsonschema rules](https://apis.io/rules/google-pagespeed/google-pagespeed-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Google Pagespeed Authentication](https://apis.io/security/google-pagespeed/google-pagespeed-authentication/)
+- [Google Pagespeed Domain Security](https://apis.io/security/google-pagespeed/google-pagespeed-domain-security/)
+- [Google Pagespeed Vulnerability Disclosure](https://apis.io/security/google-pagespeed/google-pagespeed-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Google Pagespeed Scopes](https://apis.io/scopes/google-pagespeed/google-pagespeed-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Google Pagespeed Plans Pricing](https://apis.io/plans/google-pagespeed/google-pagespeed-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Google Pagespeed Rate Limits](https://apis.io/rate-limits/google-pagespeed/google-pagespeed-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Google Pagespeed Finops](https://apis.io/finops/google-pagespeed/google-pagespeed-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.google.com/)
 - [Documentation](https://developers.google.com/speed/docs/insights)
-- [Authentication](https://developers.google.com/speed/docs/insights/v5/get-started#APIKey)
-- [Terms of Service](https://developers.google.com/terms)
-- [Privacy Policy](https://policies.google.com/privacy)
-- [Status Page](https://status.cloud.google.com/)
+- [Getting started](https://developers.google.com/speed/docs/insights/v5/get-started)
+- [API reference](https://developers.google.com/speed/docs/insights/v5/reference)
+- [Sign up](https://console.cloud.google.com/apis/credentials)
 - [Support](https://support.google.com/webmasters)
-- [Console](https://console.cloud.google.com/apis/library/pagespeedonline.googleapis.com)
-- [JSON-LD](json-ld/google-pagespeed-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Security](https://g.co/vrp)
+- [Terms of service](https://developers.google.com/terms)
+- [Privacy policy](https://policies.google.com/privacy)
+- [GitHub](https://github.com/pagespeed)
+- [Status](https://status.cloud.google.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 50.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.5 |
+| Contract governance | 14.4 |
+| Operational transparency | 52.6 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 21.1 |
+
+**Agent readiness 27.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 40.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/google-pagespeed/](https://apis.io/providers/google-pagespeed/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Google PageSpeed: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/google-pagespeed/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
