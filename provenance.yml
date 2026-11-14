@@ -8,15 +8,21 @@ artifacts:
   authentication/google-pagespeed-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/google-pagespeed-changelog.yml:
     method: searched
     evidence: declared in the artifact
   collections/google-pagespeed-analysis-api.opencollection.json:
-    method: derived
-    evidence: openapi/google-pagespeed-analysis-api
+    method: unknown
+    evidence: no authorship recorded
   collections/google-pagespeed-analysis-api.postman_collection.json:
-    method: derived
-    evidence: openapi/google-pagespeed-analysis-api
+    method: unknown
+    evidence: no authorship recorded
   collections/pagespeed-insights.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -29,8 +35,21 @@ artifacts:
   conventions/google-pagespeed-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/google-pagespeed-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/google-pagespeed-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  deprecation/google-pagespeed-deprecation-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
+  discovery/pagespeedonline-v5.json:
+    method: harvested
+    evidence: byte-identical to https://pagespeedonline.googleapis.com/$discovery/rest?version=v5 (sha256
+      f832afeb1094, fetched 2026-11-12T01:34:56+00:00)
+  eligibility/google-pagespeed-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/google-pagespeed-problem-types.yml:
     method: unknown
@@ -47,6 +66,12 @@ artifacts:
   heartbeat/2026-11-06.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
+    method: unknown
+    evidence: no authorship recorded
+  hosts/google-pagespeed-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -56,13 +81,16 @@ artifacts:
   json-ld/google-pagespeed-context.jsonld:
     method: unknown
     evidence: no authorship recorded
+  json-schema/google-pagespeed-pagespeed-api-pagespeed-response-v5-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/google-pagespeed-result-schema.json:
     method: unknown
     evidence: no authorship recorded
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -128,6 +156,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/google-pagespeed-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -137,33 +168,31 @@ artifacts:
   mcp/google-pagespeed-mcp.yml:
     method: derived
     evidence: declared in the artifact
-  openapi/_original/pagespeed-insights-discovery.json:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/pagespeed-insights-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/google-pagespeed-analysis-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/google-pagespeed-pagespeedapi-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   overlays/google-pagespeed-analysis-api-overlay.yaml:
     method: derived
     evidence: an API Evangelist overlay (title) over the provider's contract
   packages/google-pagespeed-packages.yml:
     method: searched
     evidence: declared in the artifact
+  patterns/google-pagespeed-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/google-pagespeed-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
   postman/google-pagespeed-analysis-api.postman_collection.json:
-    method: derived
-    evidence: openapi/google-pagespeed-analysis-api
+    method: unknown
+    evidence: no authorship recorded
   rate-limits/google-pagespeed-rate-limits.yml:
     method: unknown
     evidence: no authorship recorded
   rules/google-pagespeed-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/google-pagespeed-rules.yml:
     method: generated
     evidence: declared in the artifact
   sandbox/google-pagespeed-sandbox.yml:
@@ -176,8 +205,8 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   security/google-pagespeed-vulnerability-disclosure.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: searched
+    evidence: declared in the artifact
   skills/_index.yml:
     method: generated
     evidence: declared in the artifact
@@ -186,6 +215,15 @@ artifacts:
     evidence: declared in the artifact
   skills/google-pagespeed-track-core-web-vitals.md:
     method: generated
+    evidence: declared in the artifact
+  terms/google-pagespeed-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/google-pagespeed-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/google-pagespeed-vocabulary.yml:
+    method: derived
     evidence: declared in the artifact
   well-known/google-pagespeed-security.txt:
     method: unknown
